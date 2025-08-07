@@ -7,17 +7,9 @@ use App\Models\Skill;
 use Illuminate\Http\Request;
 use App\Http\Requests\SkillRequest;
 use Illuminate\Container\Attributes\Auth;
-use App\Services\S3Service;
 
 class SkillController extends Controller
 {
-    protected $s3Service;
-
-    public function __construct(S3Service $s3Service)
-    {
-        $this->s3Service = $s3Service;
-    }
-
     /**
      * Display a listing of the resource.
      */
@@ -31,12 +23,10 @@ class SkillController extends Controller
         if ($skills->isEmpty()) {
             return response()->json(['message' => 'No skills found'], 404);
         }
-        $skills->transform(function ($skill) {
-            if ($skill->logo) {
-                $skill->logo = $this->s3Service->getFileUrl($skill->logo);
-            }
-            return $skill;
-        });
+         $skills->transform(function ($skill) {
+        $skill->logo = asset('storage/' . $skill->logo);  
+        return $skill;
+    });
 
 
         // response Api 
@@ -59,48 +49,46 @@ class SkillController extends Controller
      */
     public function store(SkillRequest $request)
     {
-        try {
-            $skillData = $request->validated();
-            $skillData['user_id'] = auth()->id();
-    
-            if ($request->hasFile('logo')) {
-                $file = $request->file('logo');
-                $filePath = $this->s3Service->uploadFile($file, 'skills');
-                $skillData['logo'] = $filePath;
-            }
-    
-            $existingSkill = Skill::where('name', $skillData['name'])
-                ->where('logo', $skillData['logo'])
-                ->first();
-    
-            if ($existingSkill) {
-                return response()->json([
-                    'message' => 'Skill already exists',
-                    'skill' => $existingSkill,
-                ], 409);
-            }
-    
-            $skill = Skill::create($skillData);
-    
-            return response()->json([
-                'message' => 'Skill created successfully',
-                'skill' => $skill,
-                'logo_path' => $skill->logo,
-                'logo_url' => $skill->logo ? $this->s3Service->getFileUrl($skill->logo) : null,
-            ], 201);
-    
-        } catch (\Throwable $e) {
-            // Log the error
-            \Log::error('Error creating skill: ' . $e->getMessage());
-    
-            // Return error message in API response
-            return response()->json([
-                'message' => 'Server error',
-                'error' => $e->getMessage(), // You can remove this later
-            ], 500);
+        // validate data
+        $skillData = $request->validated();
+        $skillData['user_id'] = auth()->id(); // get the current user ID
+
+
+        //handle file upload if logo is provided
+        if($request->hasFile('logo'))
+        {
+            $file = $request->file('logo');
+
+            //generate a custom filename
+            $filename = time() . '_' . $file->getClientOriginalName();
+
+            //save to public/logos
+            $filePath = $file->storeAs('logos' , $filename, 'public');
+
+            //save the path in the validated data
+            $skillData['logo'] = $filePath;
         }
+
+        // check if already exists
+        $existingSkill = Skill::where('name', $skillData['name'])
+            ->where('logo', $skillData['logo'])
+            ->first();
+        if ($existingSkill) {
+            return response()->json([
+                'message' => 'Skill already exists',
+                'skill' => $existingSkill,
+            ], 409); // Conflict status code
+        }
+
+        // create new skill
+        $skill = Skill::create($skillData);
+
+        // response Api
+        return response()->json([
+            'message' => 'Skill created successfully',
+            'skill' => $skill,
+        ], 201); // Created status code
     }
-    
 
     /**
      * Display the specified resource.
@@ -113,11 +101,6 @@ class SkillController extends Controller
         // check if skill exists
         if (!$skill) {
             return response()->json(['message' => 'Skill not found'], 404);
-        }
-
-        // Add S3 URL to logo if exists
-        if ($skill->logo) {
-            $skill->logo = $this->s3Service->getFileUrl($skill->logo);
         }
 
         // response Api
@@ -138,7 +121,7 @@ class SkillController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(SkillRequest $request, $id)
+    public function update(SkillRequest $request , $id)
     {
         //find skill by id
         $skill = Skill::findOrFail($id);
@@ -152,15 +135,19 @@ class SkillController extends Controller
         $skillData = $request->validated();
 
         // check if new file is uploaded
-        if ($request->hasFile('logo')) {
+        if($request->hasFile('logo'))
+        {
             $file = $request->file('logo');
 
-            // Upload new file to S3
-            $filePath = $this->s3Service->uploadFile($file, 'skills');
+            // generate a  new file name
+            $filename= time(). '_' . $file->getClientOriginalName();
+
+            // store new file
+            $filePath = $file->storeAs('logos', $filename, 'public');
 
             // delete old file if exists
-            if ($skill->logo) {
-                $this->s3Service->deleteFile($skill->logo);
+            if ($skill->logo && Storage::disk('public')->exists($skill->logo)) {
+                Storage::disk('public')->delete($skill->logo);
             }
 
             // update the logo path in skill data
@@ -169,12 +156,7 @@ class SkillController extends Controller
 
         // update skill
         $skill->update($skillData);
-
-        // Add S3 URL to logo if exists
-        if ($skill->logo) {
-            $skill->logo = $this->s3Service->getFileUrl($skill->logo);
-        }
-
+        
         // response Api
         return response()->json([
             'message' => 'Skill updated successfully',
@@ -193,11 +175,6 @@ class SkillController extends Controller
         // check if skill exists
         if (!$skill) {
             return response()->json(['message' => 'Skill not found'], 404);
-        }
-
-        // delete logo from S3 if exists
-        if ($skill->logo) {
-            $this->s3Service->deleteFile($skill->logo);
         }
 
         // delete skill

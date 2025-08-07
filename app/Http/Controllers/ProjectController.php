@@ -8,17 +8,9 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\ProjectRequest;
 use App\Models\Category;
 use Illuminate\Support\Facades\Storage;
-use App\Services\S3Service;
 
 class ProjectController extends Controller
 {
-    protected $s3Service;
-
-    public function __construct(S3Service $s3Service)
-    {
-        $this->s3Service = $s3Service;
-    }
-
     /**
      * Display a listing of the resource.
      */
@@ -76,7 +68,7 @@ class ProjectController extends Controller
             $images = is_array($images) ? $images : [$images];
 
             foreach ($images as $image) {
-                $path = $this->s3Service->uploadFile($image, 'projects');
+                $path = $image->store('projects', 'public');
                 $project->images()->create([
                     'image_url' => $path,
                 ]);
@@ -143,13 +135,15 @@ class ProjectController extends Controller
         if ($request->hasFile('image_url')) {
             // delete old images
             foreach ($project->images as $image) {
-                $this->s3Service->deleteFile($image->image_url);
+                if (Storage::disk('public')->exists($image->image_url)) {
+                    Storage::disk('public')->delete($image->image_url);
+                }
                 $image->delete();
             }
 
             // save new images
             foreach ($request->file('image_url') as $image) {
-                $path = $this->s3Service->uploadFile($image, 'projects');
+                $path = $image->store('projects', 'public');
                 $project->images()->create(['image_url' => $path]);
             }
         }
@@ -179,7 +173,9 @@ class ProjectController extends Controller
 
         // Delete images from storage
         foreach ($project->images as $image) {
-            $this->s3Service->deleteFile($image->image_url);
+            if (Storage::disk('public')->exists($image->image_url)) {
+                Storage::disk('public')->delete($image->image_url);
+            }
             $image->delete(); // delete from DB
         }
 
