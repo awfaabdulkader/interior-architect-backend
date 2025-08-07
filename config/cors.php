@@ -6,7 +6,7 @@ return [
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => ['http://localhost:4200'],
+    'allowed_origins' => ['https://interior-architect-frontend-g7n9.vercel.app'],
 
     'allowed_origins_patterns' => [],
 
