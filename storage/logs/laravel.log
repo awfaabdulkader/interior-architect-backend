@@ -1,0 +1,383 @@
+[2025-08-07 19:07:48] local.ERROR: Uncaught InvalidArgumentException: Please provide a valid cache path. in C:\Users\Lenov\Desktop\version1\interior-architecture-portfolio-main\backend\vendor\laravel\framework\src\Illuminate\View\Compilers\Compiler.php:75
+Stack trace:
+#0 C:\Users\Lenov\Desktop\version1\interior-architecture-portfolio-main\backend\vendor\laravel\framework\src\Illuminate\View\ViewServiceProvider.php(97): Illuminate\View\Compilers\Compiler->__construct(Object(Illuminate\Filesystem\Filesystem), false, '', true, 'php', true)
+#1 C:\Users\Lenov\Desktop\version1\interior-architecture-portfolio-main\backend\vendor\laravel\framework\src\Illuminate\Container\Container.php(1010): Illuminate\View\ViewServiceProvider->{closure:Illuminate\View\ViewServiceProvider::registerBladeCompiler():96}(Object(Illuminate\Foundation\Application), Array)
+#2 C:\Users\Lenov\Desktop\version1\interior-architecture-portfolio-main\backend\vendor\laravel\framework\src\Illuminate\Container\Container.php(890): Illuminate\Container\Container->build(Object(Closure))
+#3 C:\Users\Lenov\Desktop\version1\interior-architecture-portfolio-main\backend\vendor\laravel\framework\src\Illuminate\Foundation\Application.php(1077): Illuminate\Container\Container->resolve('blade.compiler', Array, true)
+#4 C:\Users\Lenov\Desktop\version1\interior-architecture-portfolio-main\backend\vendor\laravel\framework\src\Illuminate\Container\Container.php(821): Illuminate\Foundation\Application->resolve('blade.compiler', Array)
+#5 C:\Users\Lenov\Desktop\version1\interior-architecture-portfolio-main\backend\vendor\laravel\framework\src\Illuminate\Foundation\Application.php(1057): Illuminate\Container\Container->make('blade.compiler', Array)
+#6 C:\Users\Lenov\Desktop\version1\interior-architecture-portfolio-main\backend\vendor\laravel\framework\src\Illuminate\Foundation\helpers.php(124): Illuminate\Foundation\Application->make('blade.compiler', Array)
+#7 Command line code(1): app('Illuminate\\View...')
+#8 {main}
+  thrown {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Uncaught InvalidArgumentException: Please provide a valid cache path. in C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Compilers\\Compiler.php:75
+Stack trace:
+#0 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\View\\ViewServiceProvider.php(97): Illuminate\\View\\Compilers\\Compiler->__construct(Object(Illuminate\\Filesystem\\Filesystem), false, '', true, 'php', true)
+#1 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(1010): Illuminate\\View\\ViewServiceProvider->{closure:Illuminate\\View\\ViewServiceProvider::registerBladeCompiler():96}(Object(Illuminate\\Foundation\\Application), Array)
+#2 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(890): Illuminate\\Container\\Container->build(Object(Closure))
+#3 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(1077): Illuminate\\Container\\Container->resolve('blade.compiler', Array, true)
+#4 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(821): Illuminate\\Foundation\\Application->resolve('blade.compiler', Array)
+#5 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(1057): Illuminate\\Container\\Container->make('blade.compiler', Array)
+#6 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php(124): Illuminate\\Foundation\\Application->make('blade.compiler', Array)
+#7 Command line code(1): app('Illuminate\\\\View...')
+#8 {main}
+  thrown at C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Compilers\\Compiler.php:75)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-07 19:30:38] local.ERROR: Uncaught InvalidArgumentException: Please provide a valid cache path. in C:\Users\Lenov\Desktop\version1\interior-architecture-portfolio-main\backend\vendor\laravel\framework\src\Illuminate\View\Compilers\Compiler.php:75
+Stack trace:
+#0 C:\Users\Lenov\Desktop\version1\interior-architecture-portfolio-main\backend\vendor\laravel\framework\src\Illuminate\View\ViewServiceProvider.php(97): Illuminate\View\Compilers\Compiler->__construct(Object(Illuminate\Filesystem\Filesystem), false, '', true, 'php', true)
+#1 C:\Users\Lenov\Desktop\version1\interior-architecture-portfolio-main\backend\vendor\laravel\framework\src\Illuminate\Container\Container.php(1010): Illuminate\View\ViewServiceProvider->{closure:Illuminate\View\ViewServiceProvider::registerBladeCompiler():96}(Object(Illuminate\Foundation\Application), Array)
+#2 C:\Users\Lenov\Desktop\version1\interior-architecture-portfolio-main\backend\vendor\laravel\framework\src\Illuminate\Container\Container.php(890): Illuminate\Container\Container->build(Object(Closure))
+#3 C:\Users\Lenov\Desktop\version1\interior-architecture-portfolio-main\backend\vendor\laravel\framework\src\Illuminate\Foundation\Application.php(1077): Illuminate\Container\Container->resolve('blade.compiler', Array, true)
+#4 C:\Users\Lenov\Desktop\version1\interior-architecture-portfolio-main\backend\vendor\laravel\framework\src\Illuminate\Container\Container.php(821): Illuminate\Foundation\Application->resolve('blade.compiler', Array)
+#5 C:\Users\Lenov\Desktop\version1\interior-architecture-portfolio-main\backend\vendor\laravel\framework\src\Illuminate\Foundation\Application.php(1057): Illuminate\Container\Container->make('blade.compiler', Array)
+#6 C:\Users\Lenov\Desktop\version1\interior-architecture-portfolio-main\backend\vendor\laravel\framework\src\Illuminate\Foundation\helpers.php(124): Illuminate\Foundation\Application->make('blade.compiler', Array)
+#7 Command line code(1): app('Illuminate\\View...')
+#8 {main}
+  thrown {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Uncaught InvalidArgumentException: Please provide a valid cache path. in C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Compilers\\Compiler.php:75
+Stack trace:
+#0 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\View\\ViewServiceProvider.php(97): Illuminate\\View\\Compilers\\Compiler->__construct(Object(Illuminate\\Filesystem\\Filesystem), false, '', true, 'php', true)
+#1 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(1010): Illuminate\\View\\ViewServiceProvider->{closure:Illuminate\\View\\ViewServiceProvider::registerBladeCompiler():96}(Object(Illuminate\\Foundation\\Application), Array)
+#2 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(890): Illuminate\\Container\\Container->build(Object(Closure))
+#3 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(1077): Illuminate\\Container\\Container->resolve('blade.compiler', Array, true)
+#4 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(821): Illuminate\\Foundation\\Application->resolve('blade.compiler', Array)
+#5 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(1057): Illuminate\\Container\\Container->make('blade.compiler', Array)
+#6 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php(124): Illuminate\\Foundation\\Application->make('blade.compiler', Array)
+#7 Command line code(1): app('Illuminate\\\\View...')
+#8 {main}
+  thrown at C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Compilers\\Compiler.php:75)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-07 19:32:55] local.ERROR: The "--columns" option does not exist. {"exception":"[object] (Symfony\\Component\\Console\\Exception\\RuntimeException(code: 0): The \"--columns\" option does not exist. at C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\symfony\\console\\Input\\ArgvInput.php:226)
+[stacktrace]
+#0 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\symfony\\console\\Input\\ArgvInput.php(153): Symfony\\Component\\Console\\Input\\ArgvInput->addLongOption('columns', 'uri,name,action...')
+#1 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\symfony\\console\\Input\\ArgvInput.php(88): Symfony\\Component\\Console\\Input\\ArgvInput->parseLongOption('--columns=uri,n...')
+#2 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\symfony\\console\\Input\\ArgvInput.php(77): Symfony\\Component\\Console\\Input\\ArgvInput->parseToken('--columns=uri,n...', true)
+#3 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\symfony\\console\\Input\\Input.php(53): Symfony\\Component\\Console\\Input\\ArgvInput->parse()
+#4 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\symfony\\console\\Command\\Command.php(276): Symfony\\Component\\Console\\Input\\Input->bind(Object(Symfony\\Component\\Console\\Input\\InputDefinition))
+#5 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php(178): Symfony\\Component\\Console\\Command\\Command->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Illuminate\\Console\\OutputStyle))
+#6 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\symfony\\console\\Application.php(1092): Illuminate\\Console\\Command->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#7 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\symfony\\console\\Application.php(341): Symfony\\Component\\Console\\Application->doRunCommand(Object(Illuminate\\Foundation\\Console\\RouteListCommand), Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#8 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\symfony\\console\\Application.php(192): Symfony\\Component\\Console\\Application->doRun(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#9 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(197): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#10 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(1234): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#11 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\artisan(16): Illuminate\\Foundation\\Application->handleCommand(Object(Symfony\\Component\\Console\\Input\\ArgvInput))
+#12 {main}
+"} 
+[2025-08-07 19:32:58] local.ERROR: The "--columns" option does not exist. {"exception":"[object] (Symfony\\Component\\Console\\Exception\\RuntimeException(code: 0): The \"--columns\" option does not exist. at C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\symfony\\console\\Input\\ArgvInput.php:226)
+[stacktrace]
+#0 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\symfony\\console\\Input\\ArgvInput.php(153): Symfony\\Component\\Console\\Input\\ArgvInput->addLongOption('columns', 'uri,name,action...')
+#1 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\symfony\\console\\Input\\ArgvInput.php(88): Symfony\\Component\\Console\\Input\\ArgvInput->parseLongOption('--columns=uri,n...')
+#2 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\symfony\\console\\Input\\ArgvInput.php(77): Symfony\\Component\\Console\\Input\\ArgvInput->parseToken('--columns=uri,n...', true)
+#3 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\symfony\\console\\Input\\Input.php(53): Symfony\\Component\\Console\\Input\\ArgvInput->parse()
+#4 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\symfony\\console\\Command\\Command.php(276): Symfony\\Component\\Console\\Input\\Input->bind(Object(Symfony\\Component\\Console\\Input\\InputDefinition))
+#5 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php(178): Symfony\\Component\\Console\\Command\\Command->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Illuminate\\Console\\OutputStyle))
+#6 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\symfony\\console\\Application.php(1092): Illuminate\\Console\\Command->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#7 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\symfony\\console\\Application.php(341): Symfony\\Component\\Console\\Application->doRunCommand(Object(Illuminate\\Foundation\\Console\\RouteListCommand), Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#8 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\symfony\\console\\Application.php(192): Symfony\\Component\\Console\\Application->doRun(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#9 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(197): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#10 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(1234): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#11 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\artisan(16): Illuminate\\Foundation\\Application->handleCommand(Object(Symfony\\Component\\Console\\Input\\ArgvInput))
+#12 {main}
+"} 
+[2025-08-07 19:33:01] local.ERROR: The "--columns" option does not exist. {"exception":"[object] (Symfony\\Component\\Console\\Exception\\RuntimeException(code: 0): The \"--columns\" option does not exist. at C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\symfony\\console\\Input\\ArgvInput.php:226)
+[stacktrace]
+#0 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\symfony\\console\\Input\\ArgvInput.php(153): Symfony\\Component\\Console\\Input\\ArgvInput->addLongOption('columns', 'uri,name,action...')
+#1 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\symfony\\console\\Input\\ArgvInput.php(88): Symfony\\Component\\Console\\Input\\ArgvInput->parseLongOption('--columns=uri,n...')
+#2 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\symfony\\console\\Input\\ArgvInput.php(77): Symfony\\Component\\Console\\Input\\ArgvInput->parseToken('--columns=uri,n...', true)
+#3 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\symfony\\console\\Input\\Input.php(53): Symfony\\Component\\Console\\Input\\ArgvInput->parse()
+#4 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\symfony\\console\\Command\\Command.php(276): Symfony\\Component\\Console\\Input\\Input->bind(Object(Symfony\\Component\\Console\\Input\\InputDefinition))
+#5 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php(178): Symfony\\Component\\Console\\Command\\Command->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Illuminate\\Console\\OutputStyle))
+#6 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\symfony\\console\\Application.php(1092): Illuminate\\Console\\Command->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#7 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\symfony\\console\\Application.php(341): Symfony\\Component\\Console\\Application->doRunCommand(Object(Illuminate\\Foundation\\Console\\RouteListCommand), Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#8 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\symfony\\console\\Application.php(192): Symfony\\Component\\Console\\Application->doRun(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#9 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(197): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#10 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(1234): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#11 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\artisan(16): Illuminate\\Foundation\\Application->handleCommand(Object(Symfony\\Component\\Console\\Input\\ArgvInput))
+#12 {main}
+"} 
+[2025-08-07 19:33:33] local.ERROR: Uncaught InvalidArgumentException: Please provide a valid cache path. in C:\Users\Lenov\Desktop\version1\interior-architecture-portfolio-main\backend\vendor\laravel\framework\src\Illuminate\View\Compilers\Compiler.php:75
+Stack trace:
+#0 C:\Users\Lenov\Desktop\version1\interior-architecture-portfolio-main\backend\vendor\laravel\framework\src\Illuminate\View\ViewServiceProvider.php(97): Illuminate\View\Compilers\Compiler->__construct(Object(Illuminate\Filesystem\Filesystem), false, '', true, 'php', true)
+#1 C:\Users\Lenov\Desktop\version1\interior-architecture-portfolio-main\backend\vendor\laravel\framework\src\Illuminate\Container\Container.php(1010): Illuminate\View\ViewServiceProvider->{closure:Illuminate\View\ViewServiceProvider::registerBladeCompiler():96}(Object(Illuminate\Foundation\Application), Array)
+#2 C:\Users\Lenov\Desktop\version1\interior-architecture-portfolio-main\backend\vendor\laravel\framework\src\Illuminate\Container\Container.php(890): Illuminate\Container\Container->build(Object(Closure))
+#3 C:\Users\Lenov\Desktop\version1\interior-architecture-portfolio-main\backend\vendor\laravel\framework\src\Illuminate\Foundation\Application.php(1077): Illuminate\Container\Container->resolve('blade.compiler', Array, true)
+#4 C:\Users\Lenov\Desktop\version1\interior-architecture-portfolio-main\backend\vendor\laravel\framework\src\Illuminate\Container\Container.php(821): Illuminate\Foundation\Application->resolve('blade.compiler', Array)
+#5 C:\Users\Lenov\Desktop\version1\interior-architecture-portfolio-main\backend\vendor\laravel\framework\src\Illuminate\Foundation\Application.php(1057): Illuminate\Container\Container->make('blade.compiler', Array)
+#6 C:\Users\Lenov\Desktop\version1\interior-architecture-portfolio-main\backend\vendor\laravel\framework\src\Illuminate\Foundation\helpers.php(124): Illuminate\Foundation\Application->make('blade.compiler', Array)
+#7 Command line code(1): app('Illuminate\\View...')
+#8 {main}
+  thrown {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Uncaught InvalidArgumentException: Please provide a valid cache path. in C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Compilers\\Compiler.php:75
+Stack trace:
+#0 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\View\\ViewServiceProvider.php(97): Illuminate\\View\\Compilers\\Compiler->__construct(Object(Illuminate\\Filesystem\\Filesystem), false, '', true, 'php', true)
+#1 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(1010): Illuminate\\View\\ViewServiceProvider->{closure:Illuminate\\View\\ViewServiceProvider::registerBladeCompiler():96}(Object(Illuminate\\Foundation\\Application), Array)
+#2 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(890): Illuminate\\Container\\Container->build(Object(Closure))
+#3 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(1077): Illuminate\\Container\\Container->resolve('blade.compiler', Array, true)
+#4 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(821): Illuminate\\Foundation\\Application->resolve('blade.compiler', Array)
+#5 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(1057): Illuminate\\Container\\Container->make('blade.compiler', Array)
+#6 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php(124): Illuminate\\Foundation\\Application->make('blade.compiler', Array)
+#7 Command line code(1): app('Illuminate\\\\View...')
+#8 {main}
+  thrown at C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Compilers\\Compiler.php:75)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-07 19:40:37] local.ERROR: Uncaught InvalidArgumentException: Please provide a valid cache path. in C:\Users\Lenov\Desktop\version1\interior-architecture-portfolio-main\backend\vendor\laravel\framework\src\Illuminate\View\Compilers\Compiler.php:75
+Stack trace:
+#0 C:\Users\Lenov\Desktop\version1\interior-architecture-portfolio-main\backend\vendor\laravel\framework\src\Illuminate\View\ViewServiceProvider.php(97): Illuminate\View\Compilers\Compiler->__construct(Object(Illuminate\Filesystem\Filesystem), false, '', true, 'php', true)
+#1 C:\Users\Lenov\Desktop\version1\interior-architecture-portfolio-main\backend\vendor\laravel\framework\src\Illuminate\Container\Container.php(1010): Illuminate\View\ViewServiceProvider->{closure:Illuminate\View\ViewServiceProvider::registerBladeCompiler():96}(Object(Illuminate\Foundation\Application), Array)
+#2 C:\Users\Lenov\Desktop\version1\interior-architecture-portfolio-main\backend\vendor\laravel\framework\src\Illuminate\Container\Container.php(890): Illuminate\Container\Container->build(Object(Closure))
+#3 C:\Users\Lenov\Desktop\version1\interior-architecture-portfolio-main\backend\vendor\laravel\framework\src\Illuminate\Foundation\Application.php(1077): Illuminate\Container\Container->resolve('blade.compiler', Array, true)
+#4 C:\Users\Lenov\Desktop\version1\interior-architecture-portfolio-main\backend\vendor\laravel\framework\src\Illuminate\Container\Container.php(821): Illuminate\Foundation\Application->resolve('blade.compiler', Array)
+#5 C:\Users\Lenov\Desktop\version1\interior-architecture-portfolio-main\backend\vendor\laravel\framework\src\Illuminate\Foundation\Application.php(1057): Illuminate\Container\Container->make('blade.compiler', Array)
+#6 C:\Users\Lenov\Desktop\version1\interior-architecture-portfolio-main\backend\vendor\laravel\framework\src\Illuminate\Foundation\helpers.php(124): Illuminate\Foundation\Application->make('blade.compiler', Array)
+#7 Command line code(1): app('Illuminate\\View...')
+#8 {main}
+  thrown {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Uncaught InvalidArgumentException: Please provide a valid cache path. in C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Compilers\\Compiler.php:75
+Stack trace:
+#0 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\View\\ViewServiceProvider.php(97): Illuminate\\View\\Compilers\\Compiler->__construct(Object(Illuminate\\Filesystem\\Filesystem), false, '', true, 'php', true)
+#1 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(1010): Illuminate\\View\\ViewServiceProvider->{closure:Illuminate\\View\\ViewServiceProvider::registerBladeCompiler():96}(Object(Illuminate\\Foundation\\Application), Array)
+#2 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(890): Illuminate\\Container\\Container->build(Object(Closure))
+#3 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(1077): Illuminate\\Container\\Container->resolve('blade.compiler', Array, true)
+#4 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(821): Illuminate\\Foundation\\Application->resolve('blade.compiler', Array)
+#5 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(1057): Illuminate\\Container\\Container->make('blade.compiler', Array)
+#6 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php(124): Illuminate\\Foundation\\Application->make('blade.compiler', Array)
+#7 Command line code(1): app('Illuminate\\\\View...')
+#8 {main}
+  thrown at C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Compilers\\Compiler.php:75)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-07 19:41:57] local.ERROR: Class "League\Flysystem\AwsS3V3\PortableVisibilityConverter" not found {"exception":"[object] (Error(code: 0): Class \"League\\Flysystem\\AwsS3V3\\PortableVisibilityConverter\" not found at C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\Filesystem\\FilesystemManager.php:247)
+[stacktrace]
+#0 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\Filesystem\\FilesystemManager.php(151): Illuminate\\Filesystem\\FilesystemManager->createS3Driver(Array, 's3')
+#1 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\Filesystem\\FilesystemManager.php(119): Illuminate\\Filesystem\\FilesystemManager->resolve('s3')
+#2 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\Filesystem\\FilesystemManager.php(82): Illuminate\\Filesystem\\FilesystemManager->get('s3')
+#3 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\Support\\Facades\\Facade.php(361): Illuminate\\Filesystem\\FilesystemManager->disk('s3')
+#4 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\app\\Console\\Commands\\TestS3Connection.php(35): Illuminate\\Support\\Facades\\Facade::__callStatic('disk', Array)
+#5 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(36): App\\Console\\Commands\\TestS3Connection->handle()
+#6 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Util.php(43): Illuminate\\Container\\BoundMethod::{closure:Illuminate\\Container\\BoundMethod::call():35}()
+#7 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(96): Illuminate\\Container\\Util::unwrapIfClosure(Object(Closure))
+#8 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(35): Illuminate\\Container\\BoundMethod::callBoundMethod(Object(Illuminate\\Foundation\\Application), Array, Object(Closure))
+#9 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(754): Illuminate\\Container\\BoundMethod::call(Object(Illuminate\\Foundation\\Application), Array, Array, NULL)
+#10 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php(209): Illuminate\\Container\\Container->call(Array)
+#11 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\symfony\\console\\Command\\Command.php(318): Illuminate\\Console\\Command->execute(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Illuminate\\Console\\OutputStyle))
+#12 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php(178): Symfony\\Component\\Console\\Command\\Command->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Illuminate\\Console\\OutputStyle))
+#13 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\symfony\\console\\Application.php(1092): Illuminate\\Console\\Command->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#14 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\symfony\\console\\Application.php(341): Symfony\\Component\\Console\\Application->doRunCommand(Object(App\\Console\\Commands\\TestS3Connection), Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#15 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\symfony\\console\\Application.php(192): Symfony\\Component\\Console\\Application->doRun(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#16 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(197): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#17 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(1234): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#18 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\artisan(16): Illuminate\\Foundation\\Application->handleCommand(Object(Symfony\\Component\\Console\\Input\\ArgvInput))
+#19 {main}
+"} 
+[2025-08-07 19:43:32] local.ERROR: Uncaught InvalidArgumentException: Please provide a valid cache path. in C:\Users\Lenov\Desktop\version1\interior-architecture-portfolio-main\backend\vendor\laravel\framework\src\Illuminate\View\Compilers\Compiler.php:75
+Stack trace:
+#0 C:\Users\Lenov\Desktop\version1\interior-architecture-portfolio-main\backend\vendor\laravel\framework\src\Illuminate\View\ViewServiceProvider.php(97): Illuminate\View\Compilers\Compiler->__construct(Object(Illuminate\Filesystem\Filesystem), false, '', true, 'php', true)
+#1 C:\Users\Lenov\Desktop\version1\interior-architecture-portfolio-main\backend\vendor\laravel\framework\src\Illuminate\Container\Container.php(1010): Illuminate\View\ViewServiceProvider->{closure:Illuminate\View\ViewServiceProvider::registerBladeCompiler():96}(Object(Illuminate\Foundation\Application), Array)
+#2 C:\Users\Lenov\Desktop\version1\interior-architecture-portfolio-main\backend\vendor\laravel\framework\src\Illuminate\Container\Container.php(890): Illuminate\Container\Container->build(Object(Closure))
+#3 C:\Users\Lenov\Desktop\version1\interior-architecture-portfolio-main\backend\vendor\laravel\framework\src\Illuminate\Foundation\Application.php(1077): Illuminate\Container\Container->resolve('blade.compiler', Array, true)
+#4 C:\Users\Lenov\Desktop\version1\interior-architecture-portfolio-main\backend\vendor\laravel\framework\src\Illuminate\Container\Container.php(821): Illuminate\Foundation\Application->resolve('blade.compiler', Array)
+#5 C:\Users\Lenov\Desktop\version1\interior-architecture-portfolio-main\backend\vendor\laravel\framework\src\Illuminate\Foundation\Application.php(1057): Illuminate\Container\Container->make('blade.compiler', Array)
+#6 C:\Users\Lenov\Desktop\version1\interior-architecture-portfolio-main\backend\vendor\laravel\framework\src\Illuminate\Foundation\helpers.php(124): Illuminate\Foundation\Application->make('blade.compiler', Array)
+#7 Command line code(1): app('Illuminate\\View...')
+#8 {main}
+  thrown {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Uncaught InvalidArgumentException: Please provide a valid cache path. in C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Compilers\\Compiler.php:75
+Stack trace:
+#0 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\View\\ViewServiceProvider.php(97): Illuminate\\View\\Compilers\\Compiler->__construct(Object(Illuminate\\Filesystem\\Filesystem), false, '', true, 'php', true)
+#1 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(1010): Illuminate\\View\\ViewServiceProvider->{closure:Illuminate\\View\\ViewServiceProvider::registerBladeCompiler():96}(Object(Illuminate\\Foundation\\Application), Array)
+#2 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(890): Illuminate\\Container\\Container->build(Object(Closure))
+#3 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(1077): Illuminate\\Container\\Container->resolve('blade.compiler', Array, true)
+#4 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(821): Illuminate\\Foundation\\Application->resolve('blade.compiler', Array)
+#5 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(1057): Illuminate\\Container\\Container->make('blade.compiler', Array)
+#6 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php(124): Illuminate\\Foundation\\Application->make('blade.compiler', Array)
+#7 Command line code(1): app('Illuminate\\\\View...')
+#8 {main}
+  thrown at C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Compilers\\Compiler.php:75)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-07 19:50:37] local.ERROR: Uncaught InvalidArgumentException: Please provide a valid cache path. in C:\Users\Lenov\Desktop\version1\interior-architecture-portfolio-main\backend\vendor\laravel\framework\src\Illuminate\View\Compilers\Compiler.php:75
+Stack trace:
+#0 C:\Users\Lenov\Desktop\version1\interior-architecture-portfolio-main\backend\vendor\laravel\framework\src\Illuminate\View\ViewServiceProvider.php(97): Illuminate\View\Compilers\Compiler->__construct(Object(Illuminate\Filesystem\Filesystem), false, '', true, 'php', true)
+#1 C:\Users\Lenov\Desktop\version1\interior-architecture-portfolio-main\backend\vendor\laravel\framework\src\Illuminate\Container\Container.php(1010): Illuminate\View\ViewServiceProvider->{closure:Illuminate\View\ViewServiceProvider::registerBladeCompiler():96}(Object(Illuminate\Foundation\Application), Array)
+#2 C:\Users\Lenov\Desktop\version1\interior-architecture-portfolio-main\backend\vendor\laravel\framework\src\Illuminate\Container\Container.php(890): Illuminate\Container\Container->build(Object(Closure))
+#3 C:\Users\Lenov\Desktop\version1\interior-architecture-portfolio-main\backend\vendor\laravel\framework\src\Illuminate\Foundation\Application.php(1077): Illuminate\Container\Container->resolve('blade.compiler', Array, true)
+#4 C:\Users\Lenov\Desktop\version1\interior-architecture-portfolio-main\backend\vendor\laravel\framework\src\Illuminate\Container\Container.php(821): Illuminate\Foundation\Application->resolve('blade.compiler', Array)
+#5 C:\Users\Lenov\Desktop\version1\interior-architecture-portfolio-main\backend\vendor\laravel\framework\src\Illuminate\Foundation\Application.php(1057): Illuminate\Container\Container->make('blade.compiler', Array)
+#6 C:\Users\Lenov\Desktop\version1\interior-architecture-portfolio-main\backend\vendor\laravel\framework\src\Illuminate\Foundation\helpers.php(124): Illuminate\Foundation\Application->make('blade.compiler', Array)
+#7 Command line code(1): app('Illuminate\\View...')
+#8 {main}
+  thrown {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Uncaught InvalidArgumentException: Please provide a valid cache path. in C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Compilers\\Compiler.php:75
+Stack trace:
+#0 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\View\\ViewServiceProvider.php(97): Illuminate\\View\\Compilers\\Compiler->__construct(Object(Illuminate\\Filesystem\\Filesystem), false, '', true, 'php', true)
+#1 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(1010): Illuminate\\View\\ViewServiceProvider->{closure:Illuminate\\View\\ViewServiceProvider::registerBladeCompiler():96}(Object(Illuminate\\Foundation\\Application), Array)
+#2 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(890): Illuminate\\Container\\Container->build(Object(Closure))
+#3 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(1077): Illuminate\\Container\\Container->resolve('blade.compiler', Array, true)
+#4 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(821): Illuminate\\Foundation\\Application->resolve('blade.compiler', Array)
+#5 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(1057): Illuminate\\Container\\Container->make('blade.compiler', Array)
+#6 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php(124): Illuminate\\Foundation\\Application->make('blade.compiler', Array)
+#7 Command line code(1): app('Illuminate\\\\View...')
+#8 {main}
+  thrown at C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Compilers\\Compiler.php:75)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-07 21:09:18] local.ERROR: Uncaught InvalidArgumentException: Please provide a valid cache path. in C:\Users\Lenov\Desktop\version1\interior-architecture-portfolio-main\backend\vendor\laravel\framework\src\Illuminate\View\Compilers\Compiler.php:75
+Stack trace:
+#0 C:\Users\Lenov\Desktop\version1\interior-architecture-portfolio-main\backend\vendor\laravel\framework\src\Illuminate\View\ViewServiceProvider.php(97): Illuminate\View\Compilers\Compiler->__construct(Object(Illuminate\Filesystem\Filesystem), false, '', true, 'php', true)
+#1 C:\Users\Lenov\Desktop\version1\interior-architecture-portfolio-main\backend\vendor\laravel\framework\src\Illuminate\Container\Container.php(1010): Illuminate\View\ViewServiceProvider->{closure:Illuminate\View\ViewServiceProvider::registerBladeCompiler():96}(Object(Illuminate\Foundation\Application), Array)
+#2 C:\Users\Lenov\Desktop\version1\interior-architecture-portfolio-main\backend\vendor\laravel\framework\src\Illuminate\Container\Container.php(890): Illuminate\Container\Container->build(Object(Closure))
+#3 C:\Users\Lenov\Desktop\version1\interior-architecture-portfolio-main\backend\vendor\laravel\framework\src\Illuminate\Foundation\Application.php(1077): Illuminate\Container\Container->resolve('blade.compiler', Array, true)
+#4 C:\Users\Lenov\Desktop\version1\interior-architecture-portfolio-main\backend\vendor\laravel\framework\src\Illuminate\Container\Container.php(821): Illuminate\Foundation\Application->resolve('blade.compiler', Array)
+#5 C:\Users\Lenov\Desktop\version1\interior-architecture-portfolio-main\backend\vendor\laravel\framework\src\Illuminate\Foundation\Application.php(1057): Illuminate\Container\Container->make('blade.compiler', Array)
+#6 C:\Users\Lenov\Desktop\version1\interior-architecture-portfolio-main\backend\vendor\laravel\framework\src\Illuminate\Foundation\helpers.php(124): Illuminate\Foundation\Application->make('blade.compiler', Array)
+#7 Command line code(1): app('Illuminate\\View...')
+#8 {main}
+  thrown {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Uncaught InvalidArgumentException: Please provide a valid cache path. in C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Compilers\\Compiler.php:75
+Stack trace:
+#0 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\View\\ViewServiceProvider.php(97): Illuminate\\View\\Compilers\\Compiler->__construct(Object(Illuminate\\Filesystem\\Filesystem), false, '', true, 'php', true)
+#1 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(1010): Illuminate\\View\\ViewServiceProvider->{closure:Illuminate\\View\\ViewServiceProvider::registerBladeCompiler():96}(Object(Illuminate\\Foundation\\Application), Array)
+#2 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(890): Illuminate\\Container\\Container->build(Object(Closure))
+#3 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(1077): Illuminate\\Container\\Container->resolve('blade.compiler', Array, true)
+#4 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(821): Illuminate\\Foundation\\Application->resolve('blade.compiler', Array)
+#5 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(1057): Illuminate\\Container\\Container->make('blade.compiler', Array)
+#6 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php(124): Illuminate\\Foundation\\Application->make('blade.compiler', Array)
+#7 Command line code(1): app('Illuminate\\\\View...')
+#8 {main}
+  thrown at C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Compilers\\Compiler.php:75)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-07 21:09:18] local.ERROR: Uncaught InvalidArgumentException: Please provide a valid cache path. in C:\Users\Lenov\Desktop\version1\interior-architecture-portfolio-main\backend\vendor\laravel\framework\src\Illuminate\View\Compilers\Compiler.php:75
+Stack trace:
+#0 C:\Users\Lenov\Desktop\version1\interior-architecture-portfolio-main\backend\vendor\laravel\framework\src\Illuminate\View\ViewServiceProvider.php(97): Illuminate\View\Compilers\Compiler->__construct(Object(Illuminate\Filesystem\Filesystem), false, '', true, 'php', true)
+#1 C:\Users\Lenov\Desktop\version1\interior-architecture-portfolio-main\backend\vendor\laravel\framework\src\Illuminate\Container\Container.php(1010): Illuminate\View\ViewServiceProvider->{closure:Illuminate\View\ViewServiceProvider::registerBladeCompiler():96}(Object(Illuminate\Foundation\Application), Array)
+#2 C:\Users\Lenov\Desktop\version1\interior-architecture-portfolio-main\backend\vendor\laravel\framework\src\Illuminate\Container\Container.php(890): Illuminate\Container\Container->build(Object(Closure))
+#3 C:\Users\Lenov\Desktop\version1\interior-architecture-portfolio-main\backend\vendor\laravel\framework\src\Illuminate\Foundation\Application.php(1077): Illuminate\Container\Container->resolve('blade.compiler', Array, true)
+#4 C:\Users\Lenov\Desktop\version1\interior-architecture-portfolio-main\backend\vendor\laravel\framework\src\Illuminate\Container\Container.php(821): Illuminate\Foundation\Application->resolve('blade.compiler', Array)
+#5 C:\Users\Lenov\Desktop\version1\interior-architecture-portfolio-main\backend\vendor\laravel\framework\src\Illuminate\Foundation\Application.php(1057): Illuminate\Container\Container->make('blade.compiler', Array)
+#6 C:\Users\Lenov\Desktop\version1\interior-architecture-portfolio-main\backend\vendor\laravel\framework\src\Illuminate\Foundation\helpers.php(124): Illuminate\Foundation\Application->make('blade.compiler', Array)
+#7 Command line code(1): app('Illuminate\\View...')
+#8 {main}
+  thrown {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Uncaught InvalidArgumentException: Please provide a valid cache path. in C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Compilers\\Compiler.php:75
+Stack trace:
+#0 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\View\\ViewServiceProvider.php(97): Illuminate\\View\\Compilers\\Compiler->__construct(Object(Illuminate\\Filesystem\\Filesystem), false, '', true, 'php', true)
+#1 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(1010): Illuminate\\View\\ViewServiceProvider->{closure:Illuminate\\View\\ViewServiceProvider::registerBladeCompiler():96}(Object(Illuminate\\Foundation\\Application), Array)
+#2 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(890): Illuminate\\Container\\Container->build(Object(Closure))
+#3 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(1077): Illuminate\\Container\\Container->resolve('blade.compiler', Array, true)
+#4 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(821): Illuminate\\Foundation\\Application->resolve('blade.compiler', Array)
+#5 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(1057): Illuminate\\Container\\Container->make('blade.compiler', Array)
+#6 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php(124): Illuminate\\Foundation\\Application->make('blade.compiler', Array)
+#7 Command line code(1): app('Illuminate\\\\View...')
+#8 {main}
+  thrown at C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Compilers\\Compiler.php:75)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-07 21:19:15] local.ERROR: Uncaught InvalidArgumentException: Please provide a valid cache path. in C:\Users\Lenov\Desktop\version1\interior-architecture-portfolio-main\backend\vendor\laravel\framework\src\Illuminate\View\Compilers\Compiler.php:75
+Stack trace:
+#0 C:\Users\Lenov\Desktop\version1\interior-architecture-portfolio-main\backend\vendor\laravel\framework\src\Illuminate\View\ViewServiceProvider.php(97): Illuminate\View\Compilers\Compiler->__construct(Object(Illuminate\Filesystem\Filesystem), false, '', true, 'php', true)
+#1 C:\Users\Lenov\Desktop\version1\interior-architecture-portfolio-main\backend\vendor\laravel\framework\src\Illuminate\Container\Container.php(1010): Illuminate\View\ViewServiceProvider->{closure:Illuminate\View\ViewServiceProvider::registerBladeCompiler():96}(Object(Illuminate\Foundation\Application), Array)
+#2 C:\Users\Lenov\Desktop\version1\interior-architecture-portfolio-main\backend\vendor\laravel\framework\src\Illuminate\Container\Container.php(890): Illuminate\Container\Container->build(Object(Closure))
+#3 C:\Users\Lenov\Desktop\version1\interior-architecture-portfolio-main\backend\vendor\laravel\framework\src\Illuminate\Foundation\Application.php(1077): Illuminate\Container\Container->resolve('blade.compiler', Array, true)
+#4 C:\Users\Lenov\Desktop\version1\interior-architecture-portfolio-main\backend\vendor\laravel\framework\src\Illuminate\Container\Container.php(821): Illuminate\Foundation\Application->resolve('blade.compiler', Array)
+#5 C:\Users\Lenov\Desktop\version1\interior-architecture-portfolio-main\backend\vendor\laravel\framework\src\Illuminate\Foundation\Application.php(1057): Illuminate\Container\Container->make('blade.compiler', Array)
+#6 C:\Users\Lenov\Desktop\version1\interior-architecture-portfolio-main\backend\vendor\laravel\framework\src\Illuminate\Foundation\helpers.php(124): Illuminate\Foundation\Application->make('blade.compiler', Array)
+#7 Command line code(1): app('Illuminate\\View...')
+#8 {main}
+  thrown {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Uncaught InvalidArgumentException: Please provide a valid cache path. in C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Compilers\\Compiler.php:75
+Stack trace:
+#0 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\View\\ViewServiceProvider.php(97): Illuminate\\View\\Compilers\\Compiler->__construct(Object(Illuminate\\Filesystem\\Filesystem), false, '', true, 'php', true)
+#1 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(1010): Illuminate\\View\\ViewServiceProvider->{closure:Illuminate\\View\\ViewServiceProvider::registerBladeCompiler():96}(Object(Illuminate\\Foundation\\Application), Array)
+#2 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(890): Illuminate\\Container\\Container->build(Object(Closure))
+#3 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(1077): Illuminate\\Container\\Container->resolve('blade.compiler', Array, true)
+#4 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(821): Illuminate\\Foundation\\Application->resolve('blade.compiler', Array)
+#5 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(1057): Illuminate\\Container\\Container->make('blade.compiler', Array)
+#6 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php(124): Illuminate\\Foundation\\Application->make('blade.compiler', Array)
+#7 Command line code(1): app('Illuminate\\\\View...')
+#8 {main}
+  thrown at C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Compilers\\Compiler.php:75)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-07 21:19:16] local.ERROR: Uncaught InvalidArgumentException: Please provide a valid cache path. in C:\Users\Lenov\Desktop\version1\interior-architecture-portfolio-main\backend\vendor\laravel\framework\src\Illuminate\View\Compilers\Compiler.php:75
+Stack trace:
+#0 C:\Users\Lenov\Desktop\version1\interior-architecture-portfolio-main\backend\vendor\laravel\framework\src\Illuminate\View\ViewServiceProvider.php(97): Illuminate\View\Compilers\Compiler->__construct(Object(Illuminate\Filesystem\Filesystem), false, '', true, 'php', true)
+#1 C:\Users\Lenov\Desktop\version1\interior-architecture-portfolio-main\backend\vendor\laravel\framework\src\Illuminate\Container\Container.php(1010): Illuminate\View\ViewServiceProvider->{closure:Illuminate\View\ViewServiceProvider::registerBladeCompiler():96}(Object(Illuminate\Foundation\Application), Array)
+#2 C:\Users\Lenov\Desktop\version1\interior-architecture-portfolio-main\backend\vendor\laravel\framework\src\Illuminate\Container\Container.php(890): Illuminate\Container\Container->build(Object(Closure))
+#3 C:\Users\Lenov\Desktop\version1\interior-architecture-portfolio-main\backend\vendor\laravel\framework\src\Illuminate\Foundation\Application.php(1077): Illuminate\Container\Container->resolve('blade.compiler', Array, true)
+#4 C:\Users\Lenov\Desktop\version1\interior-architecture-portfolio-main\backend\vendor\laravel\framework\src\Illuminate\Container\Container.php(821): Illuminate\Foundation\Application->resolve('blade.compiler', Array)
+#5 C:\Users\Lenov\Desktop\version1\interior-architecture-portfolio-main\backend\vendor\laravel\framework\src\Illuminate\Foundation\Application.php(1057): Illuminate\Container\Container->make('blade.compiler', Array)
+#6 C:\Users\Lenov\Desktop\version1\interior-architecture-portfolio-main\backend\vendor\laravel\framework\src\Illuminate\Foundation\helpers.php(124): Illuminate\Foundation\Application->make('blade.compiler', Array)
+#7 Command line code(1): app('Illuminate\\View...')
+#8 {main}
+  thrown {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Uncaught InvalidArgumentException: Please provide a valid cache path. in C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Compilers\\Compiler.php:75
+Stack trace:
+#0 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\View\\ViewServiceProvider.php(97): Illuminate\\View\\Compilers\\Compiler->__construct(Object(Illuminate\\Filesystem\\Filesystem), false, '', true, 'php', true)
+#1 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(1010): Illuminate\\View\\ViewServiceProvider->{closure:Illuminate\\View\\ViewServiceProvider::registerBladeCompiler():96}(Object(Illuminate\\Foundation\\Application), Array)
+#2 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(890): Illuminate\\Container\\Container->build(Object(Closure))
+#3 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(1077): Illuminate\\Container\\Container->resolve('blade.compiler', Array, true)
+#4 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(821): Illuminate\\Foundation\\Application->resolve('blade.compiler', Array)
+#5 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(1057): Illuminate\\Container\\Container->make('blade.compiler', Array)
+#6 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php(124): Illuminate\\Foundation\\Application->make('blade.compiler', Array)
+#7 Command line code(1): app('Illuminate\\\\View...')
+#8 {main}
+  thrown at C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Compilers\\Compiler.php:75)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-07 21:29:15] local.ERROR: Uncaught InvalidArgumentException: Please provide a valid cache path. in C:\Users\Lenov\Desktop\version1\interior-architecture-portfolio-main\backend\vendor\laravel\framework\src\Illuminate\View\Compilers\Compiler.php:75
+Stack trace:
+#0 C:\Users\Lenov\Desktop\version1\interior-architecture-portfolio-main\backend\vendor\laravel\framework\src\Illuminate\View\ViewServiceProvider.php(97): Illuminate\View\Compilers\Compiler->__construct(Object(Illuminate\Filesystem\Filesystem), false, '', true, 'php', true)
+#1 C:\Users\Lenov\Desktop\version1\interior-architecture-portfolio-main\backend\vendor\laravel\framework\src\Illuminate\Container\Container.php(1010): Illuminate\View\ViewServiceProvider->{closure:Illuminate\View\ViewServiceProvider::registerBladeCompiler():96}(Object(Illuminate\Foundation\Application), Array)
+#2 C:\Users\Lenov\Desktop\version1\interior-architecture-portfolio-main\backend\vendor\laravel\framework\src\Illuminate\Container\Container.php(890): Illuminate\Container\Container->build(Object(Closure))
+#3 C:\Users\Lenov\Desktop\version1\interior-architecture-portfolio-main\backend\vendor\laravel\framework\src\Illuminate\Foundation\Application.php(1077): Illuminate\Container\Container->resolve('blade.compiler', Array, true)
+#4 C:\Users\Lenov\Desktop\version1\interior-architecture-portfolio-main\backend\vendor\laravel\framework\src\Illuminate\Container\Container.php(821): Illuminate\Foundation\Application->resolve('blade.compiler', Array)
+#5 C:\Users\Lenov\Desktop\version1\interior-architecture-portfolio-main\backend\vendor\laravel\framework\src\Illuminate\Foundation\Application.php(1057): Illuminate\Container\Container->make('blade.compiler', Array)
+#6 C:\Users\Lenov\Desktop\version1\interior-architecture-portfolio-main\backend\vendor\laravel\framework\src\Illuminate\Foundation\helpers.php(124): Illuminate\Foundation\Application->make('blade.compiler', Array)
+#7 Command line code(1): app('Illuminate\\View...')
+#8 {main}
+  thrown {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Uncaught InvalidArgumentException: Please provide a valid cache path. in C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Compilers\\Compiler.php:75
+Stack trace:
+#0 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\View\\ViewServiceProvider.php(97): Illuminate\\View\\Compilers\\Compiler->__construct(Object(Illuminate\\Filesystem\\Filesystem), false, '', true, 'php', true)
+#1 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(1010): Illuminate\\View\\ViewServiceProvider->{closure:Illuminate\\View\\ViewServiceProvider::registerBladeCompiler():96}(Object(Illuminate\\Foundation\\Application), Array)
+#2 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(890): Illuminate\\Container\\Container->build(Object(Closure))
+#3 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(1077): Illuminate\\Container\\Container->resolve('blade.compiler', Array, true)
+#4 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(821): Illuminate\\Foundation\\Application->resolve('blade.compiler', Array)
+#5 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(1057): Illuminate\\Container\\Container->make('blade.compiler', Array)
+#6 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php(124): Illuminate\\Foundation\\Application->make('blade.compiler', Array)
+#7 Command line code(1): app('Illuminate\\\\View...')
+#8 {main}
+  thrown at C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Compilers\\Compiler.php:75)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-07 21:29:16] local.ERROR: Uncaught InvalidArgumentException: Please provide a valid cache path. in C:\Users\Lenov\Desktop\version1\interior-architecture-portfolio-main\backend\vendor\laravel\framework\src\Illuminate\View\Compilers\Compiler.php:75
+Stack trace:
+#0 C:\Users\Lenov\Desktop\version1\interior-architecture-portfolio-main\backend\vendor\laravel\framework\src\Illuminate\View\ViewServiceProvider.php(97): Illuminate\View\Compilers\Compiler->__construct(Object(Illuminate\Filesystem\Filesystem), false, '', true, 'php', true)
+#1 C:\Users\Lenov\Desktop\version1\interior-architecture-portfolio-main\backend\vendor\laravel\framework\src\Illuminate\Container\Container.php(1010): Illuminate\View\ViewServiceProvider->{closure:Illuminate\View\ViewServiceProvider::registerBladeCompiler():96}(Object(Illuminate\Foundation\Application), Array)
+#2 C:\Users\Lenov\Desktop\version1\interior-architecture-portfolio-main\backend\vendor\laravel\framework\src\Illuminate\Container\Container.php(890): Illuminate\Container\Container->build(Object(Closure))
+#3 C:\Users\Lenov\Desktop\version1\interior-architecture-portfolio-main\backend\vendor\laravel\framework\src\Illuminate\Foundation\Application.php(1077): Illuminate\Container\Container->resolve('blade.compiler', Array, true)
+#4 C:\Users\Lenov\Desktop\version1\interior-architecture-portfolio-main\backend\vendor\laravel\framework\src\Illuminate\Container\Container.php(821): Illuminate\Foundation\Application->resolve('blade.compiler', Array)
+#5 C:\Users\Lenov\Desktop\version1\interior-architecture-portfolio-main\backend\vendor\laravel\framework\src\Illuminate\Foundation\Application.php(1057): Illuminate\Container\Container->make('blade.compiler', Array)
+#6 C:\Users\Lenov\Desktop\version1\interior-architecture-portfolio-main\backend\vendor\laravel\framework\src\Illuminate\Foundation\helpers.php(124): Illuminate\Foundation\Application->make('blade.compiler', Array)
+#7 Command line code(1): app('Illuminate\\View...')
+#8 {main}
+  thrown {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Uncaught InvalidArgumentException: Please provide a valid cache path. in C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Compilers\\Compiler.php:75
+Stack trace:
+#0 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\View\\ViewServiceProvider.php(97): Illuminate\\View\\Compilers\\Compiler->__construct(Object(Illuminate\\Filesystem\\Filesystem), false, '', true, 'php', true)
+#1 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(1010): Illuminate\\View\\ViewServiceProvider->{closure:Illuminate\\View\\ViewServiceProvider::registerBladeCompiler():96}(Object(Illuminate\\Foundation\\Application), Array)
+#2 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(890): Illuminate\\Container\\Container->build(Object(Closure))
+#3 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(1077): Illuminate\\Container\\Container->resolve('blade.compiler', Array, true)
+#4 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(821): Illuminate\\Foundation\\Application->resolve('blade.compiler', Array)
+#5 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(1057): Illuminate\\Container\\Container->make('blade.compiler', Array)
+#6 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php(124): Illuminate\\Foundation\\Application->make('blade.compiler', Array)
+#7 Command line code(1): app('Illuminate\\\\View...')
+#8 {main}
+  thrown at C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Compilers\\Compiler.php:75)
+[stacktrace]
+#0 {main}
+"} 
