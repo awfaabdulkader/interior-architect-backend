@@ -59,44 +59,48 @@ class SkillController extends Controller
      */
     public function store(SkillRequest $request)
     {
-        // validate data
-        $skillData = $request->validated();
-        $skillData['user_id'] = auth()->id(); // get the current user ID
-
-
-        //handle file upload if logo is provided
-        if ($request->hasFile('logo')) {
-            $file = $request->file('logo');
-
-            // Upload to S3
-            $filePath = $this->s3Service->uploadFile($file, 'skills');
-
-            //save the path in the validated data
-            $skillData['logo'] = $filePath;
-        }
-
-        // check if already exists
-        $existingSkill = Skill::where('name', $skillData['name'])
-            ->where('logo', $skillData['logo'])
-            ->first();
-        if ($existingSkill) {
+        try {
+            $skillData = $request->validated();
+            $skillData['user_id'] = auth()->id();
+    
+            if ($request->hasFile('logo')) {
+                $file = $request->file('logo');
+                $filePath = $this->s3Service->uploadFile($file, 'skills');
+                $skillData['logo'] = $filePath;
+            }
+    
+            $existingSkill = Skill::where('name', $skillData['name'])
+                ->where('logo', $skillData['logo'])
+                ->first();
+    
+            if ($existingSkill) {
+                return response()->json([
+                    'message' => 'Skill already exists',
+                    'skill' => $existingSkill,
+                ], 409);
+            }
+    
+            $skill = Skill::create($skillData);
+    
             return response()->json([
-                'message' => 'Skill already exists',
-                'skill' => $existingSkill,
-            ], 409); // Conflict status code
+                'message' => 'Skill created successfully',
+                'skill' => $skill,
+                'logo_path' => $skill->logo,
+                'logo_url' => $skill->logo ? $this->s3Service->getFileUrl($skill->logo) : null,
+            ], 201);
+    
+        } catch (\Throwable $e) {
+            // Log the error
+            \Log::error('Error creating skill: ' . $e->getMessage());
+    
+            // Return error message in API response
+            return response()->json([
+                'message' => 'Server error',
+                'error' => $e->getMessage(), // You can remove this later
+            ], 500);
         }
-
-        // create new skill
-        $skill = Skill::create($skillData);
-
-        // response Api
-        return response()->json([
-            'message' => 'Skill created successfully',
-            'skill' => $skill,
-            'logo_path' => $skill->logo,
-            'logo_url' => $skill->logo ? $this->s3Service->getFileUrl($skill->logo) : null,
-        ], 201);
     }
+    
 
     /**
      * Display the specified resource.
