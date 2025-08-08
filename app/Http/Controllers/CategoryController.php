@@ -8,6 +8,7 @@ use App\Models\Project;
 use App\Services\ImageStorageService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Cache;
 
 class CategoryController extends Controller
 {
@@ -16,17 +17,44 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
+        try {
+            // Use caching for better performance (cache for 10 minutes)
+            $cacheKey = 'categories_page_' . request()->get('page', 1);
 
-        // check if categories exist
-        if ($categories->isEmpty()) {
-            return response()->json(['message' => 'Aucune catégorie trouvée'], 404);
+            $categories = Cache::remember($cacheKey, 600, function () {
+                return Category::select('id', 'name', 'description', 'cover', 'created_at')
+                    ->orderBy('created_at', 'desc')
+                    ->paginate(15);
+            });
+
+            // Transform data for frontend
+            $categories->getCollection()->transform(function ($category) {
+                return [
+                    'id' => $category->id,
+                    'name' => $category->name,
+                    'description' => $category->description,
+                    'cover' => $category->cover,
+                    'created_at' => $category->created_at
+                ];
+            });
+
+            return response()->json([
+                'status' => 'success',
+                'categories' => $categories->items(),
+                'pagination' => [
+                    'current_page' => $categories->currentPage(),
+                    'last_page' => $categories->lastPage(),
+                    'per_page' => $categories->perPage(),
+                    'total' => $categories->total()
+                ]
+            ]);
+        } catch (\Exception $e) {
+            Log::error('Error fetching categories: ' . $e->getMessage());
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Failed to fetch categories'
+            ], 500);
         }
-
-        return response()->json([
-            'message' => 'Catégories récupérées avec succès',
-            'categories' => $categories,
-        ], 200);
     }
 
     /**
@@ -42,38 +70,55 @@ class CategoryController extends Controller
      */
     public function store(CategoryRequest $request)
     {
-        // validate data
-        $createDataCategory = $request->validated();
-
-        $created = [];
-
-        // create category 
-        foreach ($createDataCategory['name'] as $index => $name) {
-            $description = $createDataCategory['description'][$index] ?? null;
-
-            $cover = null;
-            if ($request->hasFile("cover.$index")) {
-                $file = $request->file("cover.$index");
-                $filename = time() . '_' . $file->getClientOriginalName();
-                $path = 'category_covers/' . $filename;
-
-                // Store image in database using ImageStorageService
-                $imageStorageService = app(ImageStorageService::class);
-                $imageStorage = $imageStorageService->storeImage($file, $path);
-                $cover = $path;
-            }
-            $created[] = Category::create([
-                'name' => $name,
-                'description' => $description,
-                'cover' => $cover,
+        try {
+            Log::info('Category store request data:', [
+                'all_data' => $request->all(),
+                'has_files' => $request->hasFile('cover'),
+                'files' => $request->file('cover'),
             ]);
-        }
 
-        // response Api
-        return response()->json([
-            'message' => 'Catégorie créée avec succès',
-            'category' => $created,
-        ], 201);
+            $createDataCategory = $request->validated();
+            Log::info('Validated category data:', $createDataCategory);
+
+            $categories = [];
+            $names = $createDataCategory['name'];
+            $descriptions = $createDataCategory['description'] ?? [];
+            $covers = $createDataCategory['cover'] ?? [];
+
+            for ($i = 0; $i < count($names); $i++) {
+                $categoryData = [
+                    'name' => $names[$i],
+                    'description' => $descriptions[$i] ?? null,
+                ];
+
+                // Handle cover image if provided
+                if (isset($covers[$i]) && $covers[$i]) {
+                    $file = $covers[$i];
+                    $imageStorageService = app(ImageStorageService::class);
+                    $filename = time() . '_' . $file->getClientOriginalName();
+                    $path = 'category_covers/' . $filename;
+                    $imageStorage = $imageStorageService->storeImage($file, $path);
+                    $categoryData['cover'] = $path;
+                }
+
+                $category = Category::create($categoryData);
+                $categories[] = $category;
+            }
+
+            // Clear cache after creating new categories
+            Cache::forget('categories_page_1');
+            Cache::forget('categories_page_2');
+
+            return response()->json([
+                'message' => 'Catégories ajoutées avec succès',
+                'categories' => $categories,
+            ], 201);
+        } catch (\Exception $e) {
+            Log::error('Error creating categories: ' . $e->getMessage());
+            return response()->json([
+                'message' => 'Erreur lors de la création des catégories'
+            ], 500);
+        }
     }
 
     /**
@@ -119,9 +164,20 @@ class CategoryController extends Controller
 
         if ($request->hasFile('cover')) {
             $file = $request->file('cover');
+
+            // Delete old image from database if exists
+            if ($category->cover) {
+                $imageStorageService = app(ImageStorageService::class);
+                $imageStorageService->deleteImage($category->cover);
+            }
+
+            // Store new image in database using ImageStorageService
+            $imageStorageService = app(ImageStorageService::class);
             $filename = time() . '_' . $file->getClientOriginalName();
-            $filePath = $file->storeAs('category_covers', $filename, 'public');
-            $updateDataCategory['cover'] = $filePath;
+            $path = 'category_covers/' . $filename;
+
+            $imageStorage = $imageStorageService->storeImage($file, $path);
+            $updateDataCategory['cover'] = $path;
         }
 
         $category->update($updateDataCategory);

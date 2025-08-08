@@ -22,13 +22,18 @@ class ProjectRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-                'name' => 'required|string|max:255',
+        $rules = [
+            'name' => 'required|string|max:255',
             'category_id' => 'required|exists:categories,id',
             'description' => 'required|string|max:1000',
-'image_url' => 'nullable',
-            'image_url.*' => 'file|mimes:jpg,jpeg,png|max:2048', // each file must be jpg, png, max 2MB
-
         ];
+
+        // Only validate images if they are being uploaded
+        if ($this->hasFile('images')) {
+            $rules['images'] = 'array';
+            $rules['images.*'] = 'file|mimes:jpg,jpeg,png|max:2048';
+        }
+
+        return $rules;
     }
 }

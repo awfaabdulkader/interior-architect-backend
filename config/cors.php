@@ -7,7 +7,7 @@ return [
     'allowed_methods' => ['*'],
 
     'allowed_origins' => [
-        'https://interior-architect-frontend-g7n9.vercel.app',
+        'https://interior-architect-frontend-iota.vercel.app',
         'http://localhost:4200',
         'http://localhost:3000',
         'http://127.0.0.1:4200',

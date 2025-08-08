@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class ContactController extends Controller
 {
-     public function store(Request $request)
+    public function store(Request $request)
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
@@ -23,9 +23,21 @@ class ContactController extends Controller
     }
 
     public function index()
-{
-    $contacts = Contact::all();
-    return response()->json($contacts);
-}
+    {
+        $contacts = Contact::all();
+        return response()->json($contacts);
+    }
 
+    public function destroy($id)
+    {
+        $contact = Contact::find($id);
+
+        if (!$contact) {
+            return response()->json(['message' => 'Contact not found'], 404);
+        }
+
+        $contact->delete();
+
+        return response()->json(['message' => 'Contact deleted successfully'], 200);
+    }
 }

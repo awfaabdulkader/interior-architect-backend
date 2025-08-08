@@ -7,6 +7,8 @@ use App\Models\Skill;
 use Illuminate\Http\Request;
 use App\Http\Requests\SkillRequest;
 use Illuminate\Container\Attributes\Auth;
+use App\Services\ImageStorageService;
+use Illuminate\Support\Facades\Log;
 
 class SkillController extends Controller
 {
@@ -15,25 +17,39 @@ class SkillController extends Controller
      */
     public function index()
     {
-        // display all skills
-        $skills = Skill::all();
+        try {
+            // Optimize query with pagination and selective loading
+            $skills = Skill::select('id', 'name', 'logo', 'created_at')
+                ->orderBy('created_at', 'desc')
+                ->paginate(20); // Load 20 skills per page
 
+            // Transform data for frontend
+            $skills->getCollection()->transform(function ($skill) {
+                return [
+                    'id' => $skill->id,
+                    'name' => $skill->name,
+                    'logo' => $skill->logo,
+                    'created_at' => $skill->created_at
+                ];
+            });
 
-        // check if skills exist
-        if ($skills->isEmpty()) {
-            return response()->json(['message' => 'No skills found'], 404);
+            return response()->json([
+                'status' => 'success',
+                'skills' => $skills->items(),
+                'pagination' => [
+                    'current_page' => $skills->currentPage(),
+                    'last_page' => $skills->lastPage(),
+                    'per_page' => $skills->perPage(),
+                    'total' => $skills->total()
+                ]
+            ]);
+        } catch (\Exception $e) {
+            Log::error('Error fetching skills: ' . $e->getMessage());
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Failed to fetch skills'
+            ], 500);
         }
-         $skills->transform(function ($skill) {
-        $skill->logo = asset('storage/' . $skill->logo);  
-        return $skill;
-    });
-
-
-        // response Api 
-        return response()->json([
-            'message' => 'Skills retrieved successfully',
-            'skills' => $skills,
-        ], 200);
     }
 
     /**
@@ -55,18 +71,18 @@ class SkillController extends Controller
 
 
         //handle file upload if logo is provided
-        if($request->hasFile('logo'))
-        {
+        if ($request->hasFile('logo')) {
             $file = $request->file('logo');
 
-            //generate a custom filename
+            // Store image in database using ImageStorageService
+            $imageStorageService = app(\App\Services\ImageStorageService::class);
             $filename = time() . '_' . $file->getClientOriginalName();
+            $path = 'skills/' . $filename;
 
-            //save to public/logos
-            $filePath = $file->storeAs('logos' , $filename, 'public');
+            $imageStorage = $imageStorageService->storeImage($file, $path);
 
             //save the path in the validated data
-            $skillData['logo'] = $filePath;
+            $skillData['logo'] = $path;
         }
 
         // check if already exists
@@ -121,7 +137,7 @@ class SkillController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(SkillRequest $request , $id)
+    public function update(SkillRequest $request, $id)
     {
         //find skill by id
         $skill = Skill::findOrFail($id);
@@ -135,28 +151,29 @@ class SkillController extends Controller
         $skillData = $request->validated();
 
         // check if new file is uploaded
-        if($request->hasFile('logo'))
-        {
+        if ($request->hasFile('logo')) {
             $file = $request->file('logo');
 
-            // generate a  new file name
-            $filename= time(). '_' . $file->getClientOriginalName();
-
-            // store new file
-            $filePath = $file->storeAs('logos', $filename, 'public');
-
-            // delete old file if exists
-            if ($skill->logo && Storage::disk('public')->exists($skill->logo)) {
-                Storage::disk('public')->delete($skill->logo);
+            // Delete old image from database if exists
+            if ($skill->logo) {
+                $imageStorageService = app(ImageStorageService::class);
+                $imageStorageService->deleteImage($skill->logo);
             }
 
+            // Store new image in database using ImageStorageService
+            $imageStorageService = app(ImageStorageService::class);
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $path = 'skills/' . $filename;
+
+            $imageStorage = $imageStorageService->storeImage($file, $path);
+
             // update the logo path in skill data
-            $skillData['logo'] = $filePath;
+            $skillData['logo'] = $path;
         }
 
         // update skill
         $skill->update($skillData);
-        
+
         // response Api
         return response()->json([
             'message' => 'Skill updated successfully',
@@ -175,6 +192,12 @@ class SkillController extends Controller
         // check if skill exists
         if (!$skill) {
             return response()->json(['message' => 'Skill not found'], 404);
+        }
+
+        // Delete image from database if exists
+        if ($skill->logo) {
+            $imageStorageService = app(ImageStorageService::class);
+            $imageStorageService->deleteImage($skill->logo);
         }
 
         // delete skill

@@ -27,10 +27,10 @@ class AuthController extends Controller
 
         //response Api
         return response()->json([
-                'message' => 'Compte administrateur créé avec succès',
-                'user' => $CreateUser,
-                'token' => $token,
-            ], 201);
+            'message' => 'Compte administrateur créé avec succès',
+            'user' => $CreateUser,
+            'token' => $token,
+        ], 201);
     }
 
 
@@ -53,11 +53,11 @@ class AuthController extends Controller
 
         //response Api
         return response()->json([
-                'message' => 'Connexion réussie',
-                'user' => $user,
-                'access_token' => $token,
-                'token_type' => 'Bearer',
-            ], 200);
+            'message' => 'Connexion réussie',
+            'user' => $user,
+            'access_token' => $token,
+            'token_type' => 'Bearer',
+        ], 200);
     }
 
     public function Logout(Request $request)
