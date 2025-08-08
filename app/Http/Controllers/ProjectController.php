@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Project;
+use App\Services\ImageStorageService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\ProjectRequest;
@@ -20,11 +21,11 @@ class ProjectController extends Controller
         $projectsAll = Project::with(['images', 'category'])->orderBy('created_at', 'desc')->get();
         // check if projects exist
         if ($projectsAll->isEmpty()) {
-            return response()->json(['message' => 'No projects found'], 404);
+            return response()->json(['message' => 'Aucun projet trouvé'], 404);
         }
         // response Api
         return response()->json([
-            'message' => 'Projects retrieved successfully',
+            'message' => 'Projets récupérés avec succès',
             'projects' => $projectsAll,
         ], 200);
     }
@@ -52,7 +53,7 @@ class ProjectController extends Controller
             ->first();
         if ($esistingProjects) {
             return response()->json([
-                'message' => 'Project already exists',
+                'message' => 'Le projet existe déjà',
                 'project' => $esistingProjects,
             ], 409); // Conflict status code
         }
@@ -68,7 +69,13 @@ class ProjectController extends Controller
             $images = is_array($images) ? $images : [$images];
 
             foreach ($images as $image) {
-                $path = $image->store('projects', 'public');
+                // Store image in database using ImageStorageService
+                $imageStorageService = app(ImageStorageService::class);
+                $filename = time() . '_' . $image->getClientOriginalName();
+                $path = 'projects/' . $filename;
+
+                $imageStorage = $imageStorageService->storeImage($image, $path);
+
                 $project->images()->create([
                     'image_url' => $path,
                 ]);
@@ -78,7 +85,7 @@ class ProjectController extends Controller
 
         // response Api
         return response()->json([
-            'message' => 'Project created successfully',
+            'message' => 'Projet créé avec succès',
             'project' => $project,
         ], 201); // Created status code
 
@@ -96,7 +103,7 @@ class ProjectController extends Controller
         if (!$project) {
             return response()->json([
                 'success' => false,
-                'message' => 'Project not found'
+                'message' => 'Projet non trouvé'
             ], 404);
         }
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CategoryRequest;
 use App\Models\Category;
 use App\Models\Project;
+use App\Services\ImageStorageService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
@@ -19,11 +20,11 @@ class CategoryController extends Controller
 
         // check if categories exist
         if ($categories->isEmpty()) {
-            return response()->json(['message' => 'No categories found'], 404);
+            return response()->json(['message' => 'Aucune catégorie trouvée'], 404);
         }
 
         return response()->json([
-            'message' => 'Categories retrieved successfully',
+            'message' => 'Catégories récupérées avec succès',
             'categories' => $categories,
         ], 200);
     }
@@ -54,8 +55,12 @@ class CategoryController extends Controller
             if ($request->hasFile("cover.$index")) {
                 $file = $request->file("cover.$index");
                 $filename = time() . '_' . $file->getClientOriginalName();
-                $filePath = $file->storeAs('category_covers', $filename, 'public');
-                $cover = $filePath;
+                $path = 'category_covers/' . $filename;
+
+                // Store image in database using ImageStorageService
+                $imageStorageService = app(ImageStorageService::class);
+                $imageStorage = $imageStorageService->storeImage($file, $path);
+                $cover = $path;
             }
             $created[] = Category::create([
                 'name' => $name,
@@ -66,7 +71,7 @@ class CategoryController extends Controller
 
         // response Api
         return response()->json([
-            'message' => 'Category created successfully',
+            'message' => 'Catégorie créée avec succès',
             'category' => $created,
         ], 201);
     }
@@ -86,7 +91,7 @@ class CategoryController extends Controller
 
         // response Api
         return response()->json([
-            'message' => 'Category retrieved successfully',
+            'message' => 'Catégorie récupérée avec succès',
             'category' => $category,
         ], 200);
     }
@@ -122,7 +127,7 @@ class CategoryController extends Controller
         $category->update($updateDataCategory);
 
         return response()->json([
-            'message' => 'Category updated successfully',
+            'message' => 'Catégorie mise à jour avec succès',
             'category' => $category,
         ], 200);
     }
@@ -146,7 +151,7 @@ class CategoryController extends Controller
 
         // response Api
         return response()->json([
-            'message' => 'Category deleted successfully',
+            'message' => 'Catégorie supprimée avec succès',
         ], 200);
     }
 
