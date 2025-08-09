@@ -28,7 +28,15 @@ Route::get('/projects/{id}', [ProjectController::class, 'show']);
 Route::get('/skills', [SkillController::class, 'index']);
 Route::get('/skills/{id}', [SkillController::class, 'show']);
 Route::get('/education', [EducationController::class, 'index']);
+Route::get('/education/{id}', [EducationController::class, 'show']);
 Route::get('/experience', [ExperienceController::class, 'index']);
+Route::get('/experience/{id}', [ExperienceController::class, 'show']);
+
+// Public CV routes
+Route::get('/cv/active', [CvController::class, 'getActiveCV']);
+Route::get('/cvs', [CvController::class, 'index']);
+Route::get('/cvs/{id}', [CvController::class, 'show']);
+Route::get('/cvs/{id}/download/{language}', [CvController::class, 'downloadCV']);
 
 // Image serving routes (public)
 Route::get('/images/{path}', [ImageController::class, 'show'])->name('api.images.show')->where('path', '.*');
@@ -41,13 +49,14 @@ Route::middleware('auth:sanctum')->group(function () {
 
    // Admin operations for categories (POST, PUT, DELETE)
    Route::post('/category', [CategoryController::class, 'store']);
-   Route::put('/category/{category}', [CategoryController::class, 'update']);
-   Route::delete('/category/{category}', [CategoryController::class, 'destroy']);
+   Route::put('/category/{id}', [CategoryController::class, 'update']);
+   Route::delete('/category/{id}', [CategoryController::class, 'destroy']);
 
    // Admin operations for projects (POST, PUT, DELETE)
    Route::post('/projects', [ProjectController::class, 'store']);
    Route::put('/projects/{project}', [ProjectController::class, 'update']);
    Route::delete('/projects/{project}', [ProjectController::class, 'destroy']);
+   Route::put('/projects/{project}/cover', [ProjectController::class, 'setCoverImage']);
 
    // Admin operations for skills (POST, PUT, DELETE)
    Route::post('/skills', [SkillController::class, 'store']);

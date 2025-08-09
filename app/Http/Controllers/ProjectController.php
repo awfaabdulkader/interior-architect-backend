@@ -20,21 +20,36 @@ class ProjectController extends Controller
     {
         try {
             // Optimize query with pagination and eager loading
-            $projects = Project::with(['category:id,name,cover', 'images:id,project_id,image_url'])
+            $projects = Project::with(['category:id,name,cover', 'images:id,project_id,image_url,is_cover'])
                 ->select('id', 'name', 'description', 'category_id', 'created_at')
                 ->orderBy('created_at', 'desc')
                 ->paginate(12); // Load 12 projects per page
 
             // Transform data for frontend
             $projects->getCollection()->transform(function ($project) {
+                // Get cover image (first check for is_cover=true, otherwise use first image)
+                $coverImage = $project->images->where('is_cover', true)->first() ?? $project->images->first();
+                $coverImageData = null;
+
+                if ($coverImage) {
+                    $imageStorage = \App\Models\ImageStorage::where('path', $coverImage->image_url)->first();
+                    $coverImageData = $imageStorage ? 'data:' . $imageStorage->mime_type . ';base64,' . $imageStorage->image_data : null;
+                }
+
                 return [
                     'id' => $project->id,
                     'name' => $project->name,
                     'description' => $project->description,
+                    'cover_image' => $coverImageData, // Single cover image for thumbnails
                     'images' => $project->images->map(function ($image) {
+                        // Get base64 image data from ImageStorage
+                        $imageStorage = \App\Models\ImageStorage::where('path', $image->image_url)->first();
+                        $base64Data = $imageStorage ? 'data:' . $imageStorage->mime_type . ';base64,' . $imageStorage->image_data : null;
+
                         return [
                             'id' => $image->id,
-                            'image_url' => $image->image_url
+                            'image_url' => $base64Data,
+                            'is_cover' => $image->is_cover
                         ];
                     }),
                     'category' => $project->category ? [
@@ -142,9 +157,34 @@ class ProjectController extends Controller
             ], 404);
         }
 
+        // Transform project data to include base64 images
+        $transformedProject = [
+            'id' => $project->id,
+            'name' => $project->name,
+            'description' => $project->description,
+            'images' => $project->images->map(function ($image) {
+                // Get base64 image data from ImageStorage
+                $imageStorage = \App\Models\ImageStorage::where('path', $image->image_url)->first();
+                $base64Data = $imageStorage ? 'data:' . $imageStorage->mime_type . ';base64,' . $imageStorage->image_data : null;
+
+                return [
+                    'id' => $image->id,
+                    'image_url' => $base64Data,
+                    'is_cover' => $image->is_cover
+                ];
+            }),
+            'category' => $project->category ? [
+                'id' => $project->category->id,
+                'name' => $project->category->name,
+                'cover' => $project->category->cover
+            ] : null,
+            'created_at' => $project->created_at,
+            'updated_at' => $project->updated_at
+        ];
+
         return response()->json([
             'success' => true,
-            'project' => $project
+            'project' => $transformedProject
         ]);
     }
 
@@ -165,9 +205,9 @@ class ProjectController extends Controller
         // Debug: Log what's being received
         Log::info('Update project request data:', [
             'id' => $id,
-            'all_data' => $request->all(),
             'has_files' => $request->hasFile('images'),
-            'files' => $request->file('images'),
+            'files_count' => $request->hasFile('images') ? count($request->file('images')) : 0,
+            'keep_image_ids' => $request->input('keep_image_ids'),
             'method' => $request->method(),
             'content_type' => $request->header('Content-Type'),
             'name' => $request->input('name'),
@@ -188,14 +228,34 @@ class ProjectController extends Controller
 
         Log::info('Validated data:', $validatedProjectData);
 
-        // upload new images if provided and delete old images
-        if ($request->hasFile('images') && $request->file('images')) {
-            // delete old images from database
-            foreach ($project->images as $image) {
-                $imageStorageService = app(ImageStorageService::class);
-                $imageStorageService->deleteImage($image->image_url);
-                $image->delete();
+        // Handle explicit image deletions FIRST (before adding new ones)
+        if ($request->has('keep_image_ids')) {
+            $keepImageIds = json_decode($request->input('keep_image_ids'), true);
+            Log::info('Keep image IDs:', $keepImageIds);
+
+            // Get current project images (before adding new ones)
+            $currentImages = $project->images;
+
+            // Delete images that are NOT in the keep list
+            foreach ($currentImages as $image) {
+                if (!in_array($image->id, $keepImageIds)) {
+                    Log::info('Deleting image with ID: ' . $image->id);
+                    $imageStorageService = app(ImageStorageService::class);
+                    $imageStorageService->deleteImage($image->image_url);
+                    $image->delete();
+                }
             }
+        }
+
+        // THEN add new images (after cleaning up unwanted existing ones)
+        Log::info('Checking for new images...', [
+            'hasFile_images' => $request->hasFile('images'),
+            'file_images_exists' => !is_null($request->file('images')),
+            'all_files' => $request->allFiles()
+        ]);
+
+        if ($request->hasFile('images') && $request->file('images')) {
+            Log::info('Adding new images to project');
 
             // save new images to database
             $images = $request->file('images');
@@ -212,6 +272,8 @@ class ProjectController extends Controller
                 $project->images()->create([
                     'image_url' => $path,
                 ]);
+
+                Log::info('New image added with path: ' . $path);
             }
         }
 
@@ -257,16 +319,91 @@ class ProjectController extends Controller
             return response()->json(['message' => 'Category not found'], 404);
         }
 
-        // Fetch projects with their images
-        $projects = Project::with('images')->where('category_id', $id)->get();
+        // Fetch projects with their images including cover info
+        $projects = Project::with(['images:id,project_id,image_url,is_cover'])
+            ->select('id', 'name', 'description', 'category_id', 'created_at')
+            ->where('category_id', $id)
+            ->get();
 
         if ($projects->isEmpty()) {
             return response()->json(['message' => 'No projects found for this category'], 404);
         }
 
+        // Transform projects to include cover_image
+        $transformedProjects = $projects->map(function ($project) {
+            // Get cover image (first check for is_cover=true, otherwise use first image)
+            $coverImage = $project->images->where('is_cover', true)->first() ?? $project->images->first();
+            $coverImageData = null;
+
+            if ($coverImage) {
+                $imageStorage = \App\Models\ImageStorage::where('path', $coverImage->image_url)->first();
+                $coverImageData = $imageStorage ? 'data:' . $imageStorage->mime_type . ';base64,' . $imageStorage->image_data : null;
+            }
+
+            return [
+                'id' => $project->id,
+                'name' => $project->name,
+                'description' => $project->description,
+                'category_id' => $project->category_id,
+                'cover_image' => $coverImageData, // Single cover image for thumbnails
+                'images' => $project->images->map(function ($image) {
+                    // Get base64 image data from ImageStorage
+                    $imageStorage = \App\Models\ImageStorage::where('path', $image->image_url)->first();
+                    $base64Data = $imageStorage ? 'data:' . $imageStorage->mime_type . ';base64,' . $imageStorage->image_data : null;
+
+                    return [
+                        'id' => $image->id,
+                        'image_url' => $base64Data,
+                        'is_cover' => $image->is_cover
+                    ];
+                }),
+                'created_at' => $project->created_at
+            ];
+        });
+
         return response()->json([
             'message' => 'Projects retrieved successfully',
-            'projects' => $projects
+            'projects' => $transformedProjects
         ], 200);
+    }
+
+    /**
+     * Set cover image for a project
+     */
+    public function setCoverImage(Request $request, $projectId)
+    {
+        try {
+            $request->validate([
+                'image_id' => 'required|integer|exists:project_images,id'
+            ]);
+
+            $project = Project::findOrFail($projectId);
+            $imageId = $request->image_id;
+
+            // Verify the image belongs to this project
+            $image = $project->images()->where('id', $imageId)->first();
+            if (!$image) {
+                return response()->json([
+                    'message' => 'Image not found for this project'
+                ], 404);
+            }
+
+            // Remove is_cover from all images of this project
+            $project->images()->update(['is_cover' => false]);
+
+            // Set the selected image as cover
+            $image->update(['is_cover' => true]);
+
+            return response()->json([
+                'message' => 'Cover image updated successfully',
+                'cover_image_id' => $imageId
+            ], 200);
+        } catch (\Exception $e) {
+            Log::error('Error setting cover image: ' . $e->getMessage());
+            return response()->json([
+                'message' => 'Error setting cover image',
+                'error' => $e->getMessage()
+            ], 500);
+        }
     }
 }

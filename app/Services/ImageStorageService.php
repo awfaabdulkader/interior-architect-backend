@@ -78,18 +78,18 @@ class ImageStorageService
     }
 
     /**
+     * Get image storage record by path
+     */
+    public function getImageByPath(string $path): ?ImageStorage
+    {
+        return ImageStorage::where('path', $path)->first();
+    }
+
+    /**
      * Check if image exists in database
      */
     public function imageExists(string $path): bool
     {
         return ImageStorage::where('path', $path)->exists();
-    }
-
-    /**
-     * Get image storage by path
-     */
-    public function getImageByPath(string $path): ?ImageStorage
-    {
-        return ImageStorage::where('path', $path)->first();
     }
 }

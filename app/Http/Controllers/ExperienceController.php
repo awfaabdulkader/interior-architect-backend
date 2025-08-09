@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Experience;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use App\Http\Requests\ExperienceRequest;
 
 class ExperienceController extends Controller
@@ -14,19 +15,27 @@ class ExperienceController extends Controller
      */
     public function index()
     {
-        // display all experiences
-        $experience= Experience::all();
+        try {
+            // Optimize query with proper ordering and selective fields
+            $experiences = Experience::select(['id', 'year_start', 'year_end', 'poste', 'place', 'currently_working'])
+                ->orderByRaw('currently_working DESC, COALESCE(year_end, year_start) DESC')
+                ->get();
 
-        // check if experiences exist
-        if($experience->isEmpty()) {
-            return response()->json(['message' => 'No experiences found'], 404);
+            // Always return fresh data with no caching
+            return response()->json([
+                'message' => 'Experiences retrieved successfully',
+                'experiences' => $experiences,
+            ], 200)
+                ->header('Cache-Control', 'no-cache, no-store, must-revalidate')
+                ->header('Pragma', 'no-cache')
+                ->header('Expires', '0');
+        } catch (\Exception $e) {
+            Log::error('Error fetching experiences: ' . $e->getMessage());
+            return response()->json([
+                'message' => 'Error retrieving experiences data',
+                'error' => $e->getMessage()
+            ], 500);
         }
-
-        //response Api
-        return response()->json([
-            'message' => 'Experiences retrieved successfully',
-            'experiences' => $experience,
-        ], 200);
     }
 
     /**
@@ -41,24 +50,27 @@ class ExperienceController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(ExperienceRequest $request)
-{
-    $experienceData = $request->validated();
-    $experienceData['user_id'] = auth()->id();
+    {
+        $experienceData = $request->validated();
+        $experienceData['user_id'] = auth()->id();
 
-     // If currently working, make sure year_end is null
-    if (!empty($experienceData['currently_working'])) {
-        $experienceData['year_end'] = null;
+        // If currently working, make sure year_end is null
+        if (!empty($experienceData['currently_working'])) {
+            $experienceData['year_end'] = null;
+        }
+
+
+        $experience = Experience::create($experienceData);
+
+        // 🟢 Debug here:
+        return response()->json([
+            'message' => 'Experience created successfully',
+            'experience' => $experience,
+        ], 201)
+            ->header('Cache-Control', 'no-cache, no-store, must-revalidate')
+            ->header('Pragma', 'no-cache')
+            ->header('Expires', '0');
     }
-
-
-    $experience = Experience::create($experienceData);
-
-    // 🟢 Debug here:
-   return response()->json([
-       'message' => 'Experience created successfully',
-       'experience' => $experience,
-   ], 201);
-}
 
 
     /**
@@ -94,10 +106,9 @@ class ExperienceController extends Controller
     public function update(ExperienceRequest $request, $id)
     {
         //find by id
-        $experience= Experience::find($id);
+        $experience = Experience::find($id);
         //check if exists
-        if(!$experience)
-        {
+        if (!$experience) {
             return response()->json(['message' => 'Experience not found'], 404);
         }
         //validate data
@@ -110,7 +121,10 @@ class ExperienceController extends Controller
         return response()->json([
             'message' => 'Experience updated successfully',
             'experience' => $experience,
-        ], 200); // OK status code
+        ], 200) // OK status code
+            ->header('Cache-Control', 'no-cache, no-store, must-revalidate')
+            ->header('Pragma', 'no-cache')
+            ->header('Expires', '0');
     }
 
     /**
@@ -118,20 +132,22 @@ class ExperienceController extends Controller
      */
     public function destroy($id)
     {
-         //find by id
-        $experience= Experience::find($id);
+        //find by id
+        $experience = Experience::find($id);
         //check if exists
-        if(!$experience)
-        {
+        if (!$experience) {
             return response()->json(['message' => 'Experience not found'], 404);
         }
 
         //delete experience
         $experience->delete();
-        
+
         // response Api
         return response()->json([
             'message' => 'Experience deleted successfully',
-        ], 200); // OK status code
+        ], 200) // OK status code
+            ->header('Cache-Control', 'no-cache, no-store, must-revalidate')
+            ->header('Pragma', 'no-cache')
+            ->header('Expires', '0');
     }
 }

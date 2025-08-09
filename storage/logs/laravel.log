@@ -13726,3 +13726,28 @@ Did you mean one of these?
 [2025-08-08 17:59:11] production.INFO: getProjectsByCategory called with ID: 3  
 [2025-08-08 17:59:11] production.INFO: Category found: floor plan  
 [2025-08-08 17:59:11] production.INFO: Projects found: 1  
+[2025-08-08 19:19:15] production.ERROR: Command "migrate:" is ambiguous.
+Did you mean one of these?
+    migrate:fresh              Drop all tables and re-run all migrations
+    migrate:install            Create the migration repository
+    migrate:refresh            Reset and re-run all migrations
+    migrate:reset              Rollback all database migrations
+    migrate:rollback           Rollback the last database migration
+    migrate:status             Show the status of each migration
+    migrate:images-to-database Migrate existing images from storage to database. {"exception":"[object] (Symfony\\Component\\Console\\Exception\\CommandNotFoundException(code: 0): Command \"migrate:\" is ambiguous.
+Did you mean one of these?
+    migrate:fresh              Drop all tables and re-run all migrations
+    migrate:install            Create the migration repository
+    migrate:refresh            Reset and re-run all migrations
+    migrate:reset              Rollback all database migrations
+    migrate:rollback           Rollback the last database migration
+    migrate:status             Show the status of each migration
+    migrate:images-to-database Migrate existing images from storage to database. at C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\symfony\\console\\Application.php:766)
+[stacktrace]
+#0 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\symfony\\console\\Application.php(283): Symfony\\Component\\Console\\Application->find('migrate:')
+#1 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\symfony\\console\\Application.php(192): Symfony\\Component\\Console\\Application->doRun(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#2 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(197): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#3 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(1234): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#4 C:\\Users\\Lenov\\Desktop\\version1\\interior-architecture-portfolio-main\\backend\\artisan(16): Illuminate\\Foundation\\Application->handleCommand(Object(Symfony\\Component\\Console\\Input\\ArgvInput))
+#5 {main}
+"} 

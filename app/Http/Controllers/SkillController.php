@@ -25,10 +25,17 @@ class SkillController extends Controller
 
             // Transform data for frontend
             $skills->getCollection()->transform(function ($skill) {
+                $logoData = null;
+                if ($skill->logo) {
+                    // Get base64 image data from ImageStorage
+                    $imageStorage = \App\Models\ImageStorage::where('path', $skill->logo)->first();
+                    $logoData = $imageStorage ? 'data:' . $imageStorage->mime_type . ';base64,' . $imageStorage->image_data : null;
+                }
+
                 return [
                     'id' => $skill->id,
                     'name' => $skill->name,
-                    'logo' => $skill->logo,
+                    'logo' => $logoData, // Return base64 data
                     'created_at' => $skill->created_at
                 ];
             });
@@ -119,10 +126,26 @@ class SkillController extends Controller
             return response()->json(['message' => 'Skill not found'], 404);
         }
 
+        // Transform skill data to include base64 logo
+        $logoData = null;
+        if ($skill->logo) {
+            $imageStorage = \App\Models\ImageStorage::where('path', $skill->logo)->first();
+            $logoData = $imageStorage ? 'data:' . $imageStorage->mime_type . ';base64,' . $imageStorage->image_data : null;
+        }
+
+        $transformedSkill = [
+            'id' => $skill->id,
+            'name' => $skill->name,
+            'logo' => $logoData,
+            'user_id' => $skill->user_id,
+            'created_at' => $skill->created_at,
+            'updated_at' => $skill->updated_at
+        ];
+
         // response Api
         return response()->json([
             'message' => 'Skill retrieved successfully',
-            'skill' => $skill,
+            'skill' => $transformedSkill,
         ], 200); // OK status code
     }
 

@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Validation\Rule;
 
 class CategoryRequest extends FormRequest
 {
@@ -22,12 +23,10 @@ class CategoryRequest extends FormRequest
      */
     public function rules()
     {
-        // Check if this is an update request (PUT/PATCH) or create request (POST)
-        if ($this->isMethod('put') || $this->isMethod('patch')) {
-            // Update validation - name as string
-            $categoryId = $this->route('category'); // Use the model name from apiResource
+        if ($this->isMethod('put') || $this->isMethod('patch') || $this->input('_method') === 'PUT') {
+            // Get category ID from route parameter
+            $categoryId = $this->route('id') ?? $this->route()->parameter('id');
 
-            // Debug: Log the category ID
             Log::info('CategoryRequest validation:', [
                 'method' => $this->method(),
                 'category_id' => $categoryId,
@@ -39,13 +38,17 @@ class CategoryRequest extends FormRequest
             ]);
 
             return [
-                'name' => 'required|string|max:255|unique:categories,name,' . $categoryId,
+                'name' => [
+                    'required',
+                    'string',
+                    'max:255',
+                    Rule::unique('categories', 'name')->ignore($categoryId, 'id'),
+                ],
                 'description' => 'nullable|string|max:500',
-                'cover' => 'nullable|image|mimes:jpg,jpeg,png|max:2048', // max 2MB
+                'cover' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
             ];
         }
 
-        // Create validation - name as array
         return [
             'name' => 'required|array',
             'name.*' => 'required|string|max:255|unique:categories,name',
@@ -56,9 +59,12 @@ class CategoryRequest extends FormRequest
         ];
     }
 
+    /**
+     * Custom error messages
+     */
     public function messages()
     {
-        if ($this->isMethod('put') || $this->isMethod('patch')) {
+        if ($this->isMethod('put') || $this->isMethod('patch') || $this->input('_method') === 'PUT') {
             return [
                 'name.required' => 'Le nom de la catégorie est requis.',
                 'name.string' => 'Le nom de la catégorie doit être du texte.',
@@ -68,7 +74,7 @@ class CategoryRequest extends FormRequest
                 'description.max' => 'La description ne peut pas dépasser 500 caractères.',
                 'cover.image' => 'Le fichier doit être une image.',
                 'cover.mimes' => 'L\'image doit être au format JPG, JPEG ou PNG.',
-                'cover.max' => 'L\'image ne peut pas dépasser 2MB.'
+                'cover.max' => 'L\'image ne peut pas dépasser 2MB.',
             ];
         }
 
@@ -83,7 +89,7 @@ class CategoryRequest extends FormRequest
             'description.*.max' => 'Chaque description ne peut pas dépasser 500 caractères.',
             'cover.*.image' => 'Chaque fichier doit être une image.',
             'cover.*.mimes' => 'Chaque image doit être au format JPG, JPEG ou PNG.',
-            'cover.*.max' => 'Chaque image ne peut pas dépasser 2MB.'
+            'cover.*.max' => 'Chaque image ne peut pas dépasser 2MB.',
         ];
     }
 }
