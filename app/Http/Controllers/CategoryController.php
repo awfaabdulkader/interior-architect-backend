@@ -310,7 +310,7 @@ class CategoryController extends Controller
     /**
      * Get projects by category ID
      */
-    public function getProjectsByCategory($id)
+    public function getProjectsByCategory($id, Request $request)
     {
         Log::info('getProjectsByCategory called with ID: ' . $id);
 
@@ -323,18 +323,25 @@ class CategoryController extends Controller
 
         Log::info('Category found: ' . $category->name);
 
-        // Fetch projects with their images
-        $projects = Project::with('images')->where('category_id', $id)->get();
+        // Get pagination parameters
+        $page = $request->get('page', 1);
+        $perPage = $request->get('per_page', 12); // Load 12 projects per page
+
+        // Fetch projects with their images and pagination
+        $projects = Project::with('images')
+            ->where('category_id', $id)
+            ->orderBy('created_at', 'desc')
+            ->paginate($perPage, ['*'], 'page', $page);
 
         Log::info('Projects found: ' . $projects->count());
 
-        if ($projects->isEmpty()) {
+        if ($projects->count() === 0) {
             Log::warning('No projects found for category ID: ' . $id);
             return response()->json(['message' => 'No projects found for this category'], 404);
         }
 
         // Transform projects to include base64 image data
-        $transformedProjects = $projects->map(function ($project) {
+        $transformedProjects = $projects->getCollection()->map(function ($project) {
             $coverImage = null;
             $transformedImages = $project->images->map(function ($image) use (&$coverImage) {
                 $imageStorage = \App\Models\ImageStorage::where('path', $image->image_url)->first();
@@ -373,7 +380,16 @@ class CategoryController extends Controller
 
         return response()->json([
             'message' => 'Projects retrieved successfully',
-            'projects' => $transformedProjects
+            'projects' => $transformedProjects,
+            'pagination' => [
+                'current_page' => $projects->currentPage(),
+                'per_page' => $projects->perPage(),
+                'total' => $projects->total(),
+                'last_page' => $projects->lastPage(),
+                'has_more_pages' => $projects->hasMorePages(),
+                'from' => $projects->firstItem(),
+                'to' => $projects->lastItem()
+            ]
         ], 200);
     }
 }
