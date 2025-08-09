@@ -8,6 +8,7 @@ return [
 
     'allowed_origins' => [
         'https://interior-architect-frontend-quc6npttk.vercel.app',
+        'https://interior-architect-frontend-iota.vercel.app',
         'http://localhost:4200',
         'http://localhost:3000',
         'http://127.0.0.1:4200',
