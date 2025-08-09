@@ -25,15 +25,25 @@ class ProjectController extends Controller
                 ->orderBy('created_at', 'desc')
                 ->paginate(12); // Load 12 projects per page
 
+            // Get all image paths to preload ImageStorage data in one query (PERFORMANCE FIX)
+            $allImagePaths = $projects->getCollection()->flatMap(function ($project) {
+                return $project->images->pluck('image_url');
+            })->unique();
+
+            // Preload ALL ImageStorage data in ONE query instead of N+1 queries
+            $imageStorageData = \App\Models\ImageStorage::whereIn('path', $allImagePaths)
+                ->get()
+                ->keyBy('path');
+
             // Transform data for frontend
-            $projects->getCollection()->transform(function ($project) {
+            $projects->getCollection()->transform(function ($project) use ($imageStorageData) {
                 // Get cover image (first check for is_cover=true, otherwise use first image)
                 $coverImage = $project->images->where('is_cover', true)->first() ?? $project->images->first();
                 $coverImageData = null;
 
-                if ($coverImage) {
-                    $imageStorage = \App\Models\ImageStorage::where('path', $coverImage->image_url)->first();
-                    $coverImageData = $imageStorage ? 'data:' . $imageStorage->mime_type . ';base64,' . $imageStorage->image_data : null;
+                if ($coverImage && isset($imageStorageData[$coverImage->image_url])) {
+                    $imageStorage = $imageStorageData[$coverImage->image_url];
+                    $coverImageData = 'data:' . $imageStorage->mime_type . ';base64,' . $imageStorage->image_data;
                 }
 
                 return [
@@ -41,10 +51,12 @@ class ProjectController extends Controller
                     'name' => $project->name,
                     'description' => $project->description,
                     'cover_image' => $coverImageData, // Single cover image for thumbnails
-                    'images' => $project->images->map(function ($image) {
-                        // Get base64 image data from ImageStorage
-                        $imageStorage = \App\Models\ImageStorage::where('path', $image->image_url)->first();
-                        $base64Data = $imageStorage ? 'data:' . $imageStorage->mime_type . ';base64,' . $imageStorage->image_data : null;
+                    'images' => $project->images->map(function ($image) use ($imageStorageData) {
+                        $base64Data = null;
+                        if (isset($imageStorageData[$image->image_url])) {
+                            $imageStorage = $imageStorageData[$image->image_url];
+                            $base64Data = 'data:' . $imageStorage->mime_type . ';base64,' . $imageStorage->image_data;
+                        }
 
                         return [
                             'id' => $image->id,
