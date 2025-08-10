@@ -1,0 +1,28 @@
+<?php
+
+return [
+
+    'paths' => ['api/*', 'sanctum/csrf-cookie'],
+
+    'allowed_methods' => ['*'],
+
+    'allowed_origins' => [
+        'https://interior-architect-frontend-quc6npttk.vercel.app',
+        'https://interior-architect-frontend-iota.vercel.app',
+        'http://localhost:4200',
+        'http://localhost:3000',
+        'http://127.0.0.1:4200',
+        'http://127.0.0.1:3000'
+    ],
+
+    'allowed_origins_patterns' => [],
+
+    'allowed_headers' => ['*'],
+
+    'exposed_headers' => [],
+
+    'max_age' => 0,
+
+    'supports_credentials' => true,
+
+];
