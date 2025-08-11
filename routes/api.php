@@ -23,10 +23,15 @@ Route::delete('/admin/contacts/{id}', [ContactController::class, 'destroy']);
 // Public GET routes for viewing content
 Route::get('/category', [CategoryController::class, 'index']);
 Route::get('/category/{id}', [CategoryController::class, 'show']);
+Route::post('/category/images', [CategoryController::class, 'loadCategoryImages']); // Lazy load images
 Route::get('/projects', [ProjectController::class, 'index']);
 Route::get('/projects/{id}', [ProjectController::class, 'show']);
+Route::post('/projects/images', [ProjectController::class, 'loadProjectImages']); // Lazy load images
+Route::get('/projects/test/images', [ProjectController::class, 'testImageServing']); // Test image serving
+Route::get('/projects/test/performance', [ProjectController::class, 'testPerformanceAndBase64']); // Test performance and base64
 Route::get('/skills', [SkillController::class, 'index']);
 Route::get('/skills/{id}', [SkillController::class, 'show']);
+Route::post('/skills/logos', [SkillController::class, 'loadSkillLogos']); // Lazy load logos
 Route::get('/education', [EducationController::class, 'index']);
 Route::get('/education/{id}', [EducationController::class, 'show']);
 Route::get('/experience', [ExperienceController::class, 'index']);
@@ -56,12 +61,14 @@ Route::middleware('auth:sanctum')->group(function () {
    Route::post('/projects', [ProjectController::class, 'store']);
    Route::put('/projects/{project}', [ProjectController::class, 'update']);
    Route::delete('/projects/{project}', [ProjectController::class, 'destroy']);
+   Route::post('/projects/bulk-delete', [ProjectController::class, 'bulkDestroy']);
    Route::put('/projects/{project}/cover', [ProjectController::class, 'setCoverImage']);
 
    // Admin operations for skills (POST, PUT, DELETE)
    Route::post('/skills', [SkillController::class, 'store']);
    Route::put('/skills/{skill}', [SkillController::class, 'update']);
    Route::delete('/skills/{skill}', [SkillController::class, 'destroy']);
+   Route::post('/skills/bulk-delete', [SkillController::class, 'bulkDestroy']);
 
    // Admin operations for education (POST, PUT, DELETE)
    Route::post('/education', [EducationController::class, 'store']);

@@ -59,7 +59,6 @@ class ExperienceController extends Controller
             $experienceData['year_end'] = null;
         }
 
-
         $experience = Experience::create($experienceData);
 
         // 🟢 Debug here:
@@ -71,7 +70,6 @@ class ExperienceController extends Controller
             ->header('Pragma', 'no-cache')
             ->header('Expires', '0');
     }
-
 
     /**
      * Display the specified resource.
@@ -145,9 +143,6 @@ class ExperienceController extends Controller
         // response Api
         return response()->json([
             'message' => 'Experience deleted successfully',
-        ], 200) // OK status code
-            ->header('Cache-Control', 'no-cache, no-store, must-revalidate')
-            ->header('Pragma', 'no-cache')
-            ->header('Expires', '0');
+        ], 200); // OK status code
     }
 }

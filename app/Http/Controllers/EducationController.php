@@ -68,7 +68,6 @@ class EducationController extends Controller
             ->header('Expires', '0');
     }
 
-
     /**
      * Display the specified resource.
      */
@@ -85,9 +84,6 @@ class EducationController extends Controller
             'education' => $education,
         ], 200);
     }
-
-
-
 
     /**
      * Show the form for editing the specified resource.
